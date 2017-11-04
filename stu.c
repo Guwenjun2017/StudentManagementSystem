@@ -3,73 +3,74 @@
 #include <string.h>
 #include "stu.h"
 
+//初始学生数为0
 int num = 0;
+
 /*求平均值*/  
-float Avg(student stu)  
-{  
-     return (stu.math + stu.engl + stu.phys + stu.elec + stu.CII) / 5;  
+float Avg(student stu){  
+    return (stu.math + stu.engl + stu.phys + stu.elec + stu.CII) / 5;  
 }  
   
 /*通过学号返回数组下标*/  
-int Student_SearchByIndex(char id[])  
-{  
+int Student_SearchByIndex(char id[]){  
     int i;  
-    for (i=0;i<num;i++)  
-    {  
-        if (strcmp(students[i].ID, id)==0)  
+    for(i=0;i<num;i++){  
+	if (strcmp(students[i].ID, id)==0)  
         {  
-             return i;  
+	    return i;  
         }  
     }  
     return -1;  
 }  
   
 /*通过姓名返回数组下标*/  
-int Student_SearchByName(char name[])  
-{  
+int Student_SearchByName(char name[]){  
     int i;  
-    for (i=0;i<num;i++)  
-    {  
-        if (strcmp(students[i].Name, name) == 0)  
-        {  
-             return i;  
+    for(i=0;i<num;i++){  
+        if (strcmp(students[i].Name, name) == 0){  
+	    return i;  
         }  
     }  
     return -1;  
 }  
   
 /*显示单条学生记录*/  
-void Student_DisplaySingle(int index)  
-{  
+void Student_DisplaySingle(int index){  
     printf("%10s %10s %10s %10s %10s %10s %10s\t%10s \n","学号","姓名","math","engl","phys","elec","CII","平均成绩");  
     printf("------------------------------------------------------------------------------------------\n");  
     printf("%7s %10s %10.2f %10.2f %9.2f %9.2f %12.2f %13.2f\n",students[index].ID,students[index].Name,  
               students[index].math, students[index].engl, students[index].phys, students[index].elec, students[index].CII, students[index].Average);  
+
+    return;
 }  
   
 /*插入学生信息*/  
-void Student_Insert()  
-{  
-    while(1)  
-    {  
-        printf("请输入学号:");  
+void Student_Insert(){  
+    while(1){  
+	printf("请输入学号:");  
         scanf("%s",&students[num].ID);  
         getchar();  
+	
         printf("请输入姓名:");  
         scanf("%s",&students[num].Name);  
         getchar();  
+
         printf("请输入math:");  
         scanf("%f",&students[num].math);  
         getchar();  
+
         printf("请输入engl:");  
         scanf("%f",&students[num].engl);  
         getchar();  
+
         printf("请输入phys:");  
         scanf("%f",&students[num].phys);  
         getchar();  
+
         printf("请输入elec:");  
         scanf("%f",&students[num].elec);  
         getchar();  
+
         printf("请输入CII:");  
         scanf("%f",&students[num].CII);  
         getchar();  
@@ -79,20 +80,18 @@ void Student_Insert()
   
         printf("是否继续?(y/n)");  
   
-        if (getchar()=='n')  
-        {  
+        if (getchar()=='n'){  
              break;  
-        }  
+        } 
     }  
+
+    return;
 }  
   
 /*修改学生信息*/  
-void Student_Modify()  
-{  
-     //float mark1,mark2,mark3;  
-    while(1)  
-    {  
-        char id[20];  
+void Student_Modify(){  
+    while(1){  
+	char id[20];  
         int index;  
   
         printf("请输入要修改的学生的学号:");  
@@ -109,24 +108,31 @@ void Student_Modify()
             printf("请输入学号:");  
             scanf("%s",&students[index].ID);  
             getchar();  
+
             printf("请输入姓名:");  
             scanf("%s",&students[index].Name);  
             getchar();  
+
             printf("请输入math:");  
             scanf("%f",&students[index].math);  
             getchar();  
+
             printf("请输入engl:");  
             scanf("%f",&students[index].engl);  
             getchar();  
+
             printf("请输入phys:");  
             scanf("%f",&students[index].phys);  
             getchar();  
+
             printf("请输入elec:");  
             scanf("%f",&students[index].elec);  
             getchar();  
+
             printf("请输入CII:");  
             scanf("%f",&students[index].CII);  
             getchar();  
+
             students[index].Average=Avg(students[index]);  
         }  
   
@@ -136,16 +142,15 @@ void Student_Modify()
         }  
     }  
 
+    return;
 }  
   
    
   
 /*删除学生信息*/  
-void Student_Delete()  
-{  
+void Student_Delete(){  
     int i;  
-    while(1)  
-    {  
+    while(1){  
 	char id[20];  
         int index;  
         printf("请输入要删除的学生的学号:");  
@@ -153,7 +158,7 @@ void Student_Delete()
         getchar();  
         index=Student_SearchByIndex(id);  
 
-        if (index==-1){  
+        if(index==-1){  
              printf("学生不存在!\n");  
         }  
         else{  
@@ -174,14 +179,14 @@ void Student_Delete()
         if(getchar()=='n'){  
              break;  
         }  
-    }  
+    } 
+
+    return;
 }  
   
 /*按姓名查询*/  
-void Student_Select()  
-{  
-    while(1)  
-    {  
+void Student_Select(){  
+    while(1){  
         char name[20];  
         int index;  
         printf("请输入要查询的学生的姓名:");  
@@ -202,6 +207,7 @@ void Student_Select()
         }  
     }  
 
+    return;
 }  
   
 /********************************************成绩统计模块**************************************************/
@@ -209,6 +215,7 @@ void Student_Select()
 void Student_SortByAverage(){  
     int i, j;  
     student tmp;  
+
     for(i=0;i<num;i++){  
 	for (j=1;j<num-i;j++){  
 	    if(students[j-1].Average<students[j].Average){  
@@ -220,12 +227,14 @@ void Student_SortByAverage(){
     }  
     Student_Display();
 
+    return;
 }  
    
 /*按学号排序*/
 void Student_SortByID(){
     int i, j;
     student tmp;
+
     for(i = 0; i < num; i++){
 	for(j = 1; j < num - i; j++){
 	    if(students[j - 1].ID < students[j].ID){
@@ -236,6 +245,8 @@ void Student_SortByID(){
 	}
     }
     Student_Display();
+
+    return;
 }
 
 //各门课各分数段学生人数统计并打印
@@ -332,65 +343,61 @@ void Student_Sort_EachSubject(){
 void Student_Display()  
 {  
     int i;  
+
     printf("%10s %10s %10s %10s %10s %10s %10s\t%10s \n","学号","姓名","math","engl","phys","elec","CII","平均成绩");  
     printf("------------------------------------------------------------------------------------------\n");  
-    for (i=0;i<num;i++)  
-    {  
+    for (i=0;i<num;i++){  
         printf("%7s %10s %10.2f %10.2f %9.2f %9.2f %12.2f %13.2f\n", students[i].ID, students[i].Name,  
              students[i].math, students[i].engl, students[i].phys, students[i].elec, students[i].CII, students[i].Average);  
     }  
+
+    return;
 }  
   
 /*********************************************文件读写模块*************************************************/
 /*将学生信息从文件读出*/  
 void IO_ReadInfo()  
 {  
-     FILE *fp;  
-     int i;  
-     if ((fp=fopen("record.txt","rb"))==NULL)  
-     {  
-         printf("不能打开文件!\n");  
-         return;  
-     }  
-     if (fread(&num,sizeof(int),1,fp)!=1)  
-     {  
-         num=-1;  
-     }  
-     else  
-     {  
-         for(i=0;i<num;i++)  
-         {  
-              fread(&students[i],sizeof(student),1,fp);  
-         }  
-     }  
+    FILE *fp;  
+    int i;  
+
+    if((fp=fopen("record.txt","rb"))==NULL){  
+        printf("不能打开文件!\n");  
+        return;  
+    }  
+    if(fread(&num,sizeof(int),1,fp)!=1){  
+        num=-1;  
+    }else{  
+        for(i=0;i<num;i++){  
+	    fread(&students[i],sizeof(student),1,fp);  
+        }  
+    }  
   
-     fclose(fp);  
+    fclose(fp);  
+    return;
 }  
   
 /*将学生信息写入文件*/  
 void IO_WriteInfo()  
 {  
-     FILE *fp;  
-     int i;  
+    FILE *fp;  
+    int i;  
   
-     if ((fp=fopen("record.txt","wb"))==NULL)  
-     {  
-         printf("不能打开文件!\n");  
-         return;  
-     }  
-     if (fwrite(&num,sizeof(int),1,fp)!=1)  
-     {  
-         printf("写入文件错误!\n");  
-     }  
-     for (i=0;i<num;i++)  
-     {  
-         if (fwrite(&students[i],sizeof(student),1,fp)!=1)  
-         {  
-              printf("写入文件错误!\n");  
-         }  
-     }      
+    if((fp=fopen("record.txt","wb"))==NULL){  
+        printf("不能打开文件!\n");  
+        return;  
+    }  
+    if(fwrite(&num,sizeof(int),1,fp)!=1){  
+        printf("写入文件错误!\n");  
+    }  
+    for (i=0;i<num;i++){  
+        if(fwrite(&students[i],sizeof(student),1,fp)!=1){  
+	    printf("写入文件错误!\n");  
+        }  
+    }      
   
-     fclose(fp);  
+    fclose(fp);  
+    return;
 }  
   
 /*******************************************子菜单模块***************************************************/  
@@ -411,8 +418,7 @@ void GradeInput()
         printf("请选择(1 ~ 4), 0返回主菜单:");  
         scanf("%d",&choice);  
         getchar();  
-        switch(choice)  
-        {  
+        switch(choice){  
         case 1: Student_Insert(); break;  
         case 2: Student_Modify(); break;  
         case 3: Student_Delete(); break;  
@@ -421,6 +427,8 @@ void GradeInput()
         }  
         IO_WriteInfo();  
     }  
+
+    return;
 }  
 
 //成绩统计模块
@@ -446,4 +454,6 @@ void TongJi(){
 	}
 	IO_WriteInfo();
     }
+
+    return;
 }
