@@ -415,7 +415,7 @@ void GradeInput()
         printf("3. 删除学生记录\n");  
         printf("4. 按姓名查询学生记录\n");  
         printf("0. 返回主菜单\n");  
-        printf("请选择(1 ~ 4), 0返回主菜单:");  
+        printf("请选择(1 ~ 4), 0返回主菜单:\n");  
         scanf("%d",&choice);  
         getchar();  
         switch(choice){  
@@ -432,10 +432,10 @@ void GradeInput()
 }  
 
 //成绩统计模块
-void TongJi(){
+void GradeTongJi(){
     int choice;
 
-    IO_ReadInfo();
+    //IO_ReadInfo();
     while(1){
 	printf("\n|----------------成绩统计-----------------|\n");
 	printf("|      1 ---- 按学号排序                  |\n");
@@ -443,7 +443,7 @@ void TongJi(){
 	printf("|      3 ---- 统计分数段                  |\n");
 	printf("|      0 ---- 返回主菜单                  |\n");
 	printf("|-----------------------------------------|\n");
-	printf("请输入选项编号(1 ~ 2, 0返回主菜单):\n");
+	printf("请输入选项编号(1 ~ 3, 0返回主菜单):\n");
 	scanf("%d", &choice);
 	getchar();
 	switch(choice){
@@ -457,3 +457,110 @@ void TongJi(){
 
     return;
 }
+
+//学籍处理
+void Student_status_management(){
+    int choice;
+    do{
+	printf("|-----------------------------------------|\n");
+	printf("|          请输入选项编号(0 ~ 3)          |\n");
+	printf("|-----------------------------------------|\n");
+	printf("|      1 ---- 生成并打印补考通知单        |\n");
+	printf("|      2 ---- 生成并打印退学通知单        |\n");
+	printf("|      3 ---- 生成并打印新名册            |\n");
+	printf("|      0 ---- 返回主菜单                  |\n");
+	printf("|-----------------------------------------|\n");
+	printf("请输入选项编号(1 ~ 3, 0 返回):\n");
+	scanf("%d", &choice);
+	switch(choice)
+	{
+	    //case 1: print_information_bukao(); break;
+	    case 2: print_information_tuixue(); break;
+	    case 3: print_information_up(); break;
+	    case 0: return; break;
+	    default: printf("%d是非法选项,按任意建后重新选择!\n", choice);
+	    getchar();
+	    getchar();
+	}
+    }while(1);
+}
+
+//补考通知
+void print_information_tuixue(){
+    //初始挂科数为0
+    int num_of_fail = 0;
+    //初始补考人数设为-1,因计数从0开始
+    int num_of_studentfail = -1; 
+    for(int i = 0; i < num; i++){
+	if(students[i].math < 60)
+	    num_of_fail++;
+	if(students[i].engl < 60)
+	    num_of_fail++;
+	if(students[i].phys < 60)
+	    num_of_fail++;
+	if(students[i].elec < 60)
+	    num_of_fail++;
+	if(students[i].CII < 60)
+	    num_of_fail++;
+	if(num_of_fail >= 3){
+	    num_of_studentfail++;
+	    students_fail[num_of_studentfail] = students[i];
+	}
+    }
+    printf("\n---------------退学通知-----------------\n");  
+    printf("学号\t\t姓名\t挂科科目与挂科科目的对应成绩\n");
+    for(int j = 0; j < num_of_studentfail; j++){
+	printf("%d\t", students_fail[j].ID);
+	printf("%s\t", students_fail[j].Name);
+	if(students_fail[j].math < 60){
+	    printf("math:  %5.2f|", students_fail[j].math);
+	}
+	if(students_fail[j].engl < 60){
+	    printf("engl:  %5.2f|", students_fail[j].engl);
+	}
+	if(students_fail[j].phys < 60){
+	    printf("phys:  %5.2f|", students_fail[j].phys);
+	}
+	if(students_fail[j].elec < 60){
+	    printf("elec:  %5.2f|", students_fail[j].elec);
+	}
+	if(students_fail[j].CII < 60){
+	    printf("CII:  %5.2f|", students_fail[j].CII);
+	}
+	printf("\n");
+    }  
+
+    return;
+} 
+
+//升学学生
+void print_information_up() {
+    //初始挂科数为0
+    int num_of_fail = 0;
+    //初始升学人数设为-1,因计数从0开始
+    int num_of_up = -1; 
+    for(int i = 0; i < num; i++){
+	if(students[i].math < 60)
+	    num_of_fail++;
+	if(students[i].engl < 60)
+	    num_of_fail++;
+	if(students[i].phys < 60)
+	    num_of_fail++;
+	if(students[i].elec < 60)
+	    num_of_fail++;
+	if(students[i].CII < 60)
+	    num_of_fail++;
+	if(num_of_fail <= 2){
+	    num_of_up++;
+	    next[num_of_up] = students[i];
+	}
+    }
+    printf("\n升入高年级学生的学号与姓名:\n");
+    for(int j = 0; j < num_of_up; j++){
+	printf("ID: %d\t", next[j].ID);
+	printf("姓名: %s\n", next[j].Name);
+    }
+
+    return;
+}
+

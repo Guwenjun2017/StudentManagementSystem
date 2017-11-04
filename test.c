@@ -21,8 +21,8 @@ int main(int argc, char **argv)
 	switch(choice)
 	{
 	    case 1: GradeInput(); break;
-	    case 2: TongJi(); break;
-	    //case 3: ; break;
+	    case 2: GradeTongJi(); break;
+	    case 3: Student_status_management(); break;
 	    case 0: exit(0);
 	    default: printf("%d是非法选项,按任意建后重新选择!\n", choice);
 	    getchar();
