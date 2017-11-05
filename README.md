@@ -3,7 +3,7 @@ This is the first small project. It's a class store statistics and student statu
 Indicent record:
 
     November 6,2017 1:03 a.m. (310th days)
-    I translate the Chinese in the code into English so that I can communicate better with my friend Joshua.
+    I translate the Chinese in the code into English so that I can communicate better with my friend Joshua Lazaro.
 
 
 
