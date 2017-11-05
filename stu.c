@@ -36,7 +36,7 @@ int Student_SearchByName(char name[]){
   
 /*显示单条学生记录*/  
 void Student_DisplaySingle(int index){  
-    printf("%10s %10s %10s %10s %10s %10s %10s\t%10s \n","学号","姓名","math","engl","phys","elec","CII","平均成绩");  
+    printf("%10s %10s %10s %10s %10s %10s %10s\t%10s \n","ID","Name","math","engl","phys","elec","CII","平均成绩");  
     printf("------------------------------------------------------------------------------------------\n");  
     printf("%7s %10s %10.2f %10.2f %9.2f %9.2f %12.2f %13.2f\n",students[index].ID,students[index].Name,  
               students[index].math, students[index].engl, students[index].phys, students[index].elec, students[index].CII, students[index].Average);  
@@ -47,38 +47,38 @@ void Student_DisplaySingle(int index){
 /*插入学生信息*/  
 void Student_Insert(){  
     while(1){  
-	printf("请输入学号:");  
+	printf("Input_ID:");  
         scanf("%s",&students[num].ID);  
         getchar();  
 	
-        printf("请输入姓名:");  
+        printf("Input_Name:");  
         scanf("%s",&students[num].Name);  
         getchar();  
 
-        printf("请输入math:");  
+        printf("Input_math:");  
         scanf("%f",&students[num].math);  
         getchar();  
 
-        printf("请输入engl:");  
+        printf("Input_engl:");  
         scanf("%f",&students[num].engl);  
         getchar();  
 
-        printf("请输入phys:");  
+        printf("Input_phys:");  
         scanf("%f",&students[num].phys);  
         getchar();  
 
-        printf("请输入elec:");  
+        printf("Input_elec:");  
         scanf("%f",&students[num].elec);  
         getchar();  
 
-        printf("请输入CII:");  
+        printf("Input_CII:");  
         scanf("%f",&students[num].CII);  
         getchar();  
   
         students[num].Average=Avg(students[num]);  
         num++;  
   
-        printf("是否继续?(y/n)");  
+        printf("Continue?(y/n)");  
   
         if (getchar()=='n'){  
              break;  
@@ -94,49 +94,49 @@ void Student_Modify(){
 	char id[20];  
         int index;  
   
-        printf("请输入要修改的学生的学号:");  
+        printf("Please input ID of student which you want to modify:");  
         scanf("%s",&id);  
         getchar();  
         index=Student_SearchByIndex(id);  
         if(index==-1){  
-            printf("学生不存在!\n");  
+            printf("Not exist!\n");  
         }  
         else{  
             printf("你要修改的学生信息为:\n");  
             Student_DisplaySingle(index);  
             printf("-- 请输入新值--\n");  
-            printf("请输入学号:");  
+            printf("Input_ID:");  
             scanf("%s",&students[index].ID);  
             getchar();  
 
-            printf("请输入姓名:");  
+            printf("Input_Name:");  
             scanf("%s",&students[index].Name);  
             getchar();  
 
-            printf("请输入math:");  
+            printf("Input_math:");  
             scanf("%f",&students[index].math);  
             getchar();  
 
-            printf("请输入engl:");  
+            printf("Input_engl:");  
             scanf("%f",&students[index].engl);  
             getchar();  
 
-            printf("请输入phys:");  
+            printf("Input_phys:");  
             scanf("%f",&students[index].phys);  
             getchar();  
 
-            printf("请输入elec:");  
+            printf("Input_elec:");  
             scanf("%f",&students[index].elec);  
             getchar();  
 
-            printf("请输入CII:");  
+            printf("Input_CII:");  
             scanf("%f",&students[index].CII);  
             getchar();  
 
             students[index].Average=Avg(students[index]);  
         }  
   
-        printf("是否继续?(y/n)");  
+        printf("Continue?(y/n)");  
         if(getchar()=='n'){  
 	    break;  
         }  
@@ -153,18 +153,18 @@ void Student_Delete(){
     while(1){  
 	char id[20];  
         int index;  
-        printf("请输入要删除的学生的学号:");  
+        printf("Please input ID of student which you want to delete:");  
         scanf("%s",&id);  
         getchar();  
         index=Student_SearchByIndex(id);  
 
         if(index==-1){  
-             printf("学生不存在!\n");  
+             printf("Not exist!\n");  
         }  
         else{  
             printf("你要删除的学生信息为:\n");  
             Student_DisplaySingle(index);  
-            printf("是否真的要删除?(y/n)");  
+            printf("Sure delete?(y/n)");  
             if(getchar()=='y'){  
                 for(i=index;i<num-1;i++){  
 		    //把后边的对象都向前移动  
@@ -175,7 +175,7 @@ void Student_Delete(){
             getchar();  
         }  
 
-        printf("是否继续?(y/n)");  
+        printf("Continue?(y/n)");  
         if(getchar()=='n'){  
              break;  
         }  
@@ -189,19 +189,19 @@ void Student_Select(){
     while(1){  
         char name[20];  
         int index;  
-        printf("请输入要查询的学生的姓名:");  
+        printf("Please input ID of student which you want to search:");  
         scanf("%s",&name);  
         getchar();  
         index=Student_SearchByName(name);  
 
         if (index==-1){  
-             printf("学生不存在!\n");  
+             printf("Not exist!\n");  
         }else{  
              printf("你要查询的学生信息为:\n");  
              Student_DisplaySingle(index);  
         }  
 
-        printf("是否继续?(y/n)");  
+        printf("Continue?(y/n)");  
         if (getchar()=='n'){  
              break;  
         }  
@@ -344,7 +344,7 @@ void Student_Display()
 {  
     int i;  
 
-    printf("%10s %10s %10s %10s %10s %10s %10s\t%10s \n","学号","姓名","math","engl","phys","elec","CII","平均成绩");  
+    printf("%10s %10s %10s %10s %10s %10s %10s\t%10s \n","ID","Name","math","engl","phys","elec","CII","Average");  
     printf("------------------------------------------------------------------------------------------\n");  
     for (i=0;i<num;i++){  
         printf("%7s %10s %10.2f %10.2f %9.2f %9.2f %12.2f %13.2f\n", students[i].ID, students[i].Name,  
@@ -362,7 +362,7 @@ void IO_ReadInfo()
     int i;  
 
     if((fp=fopen("record.txt","rb"))==NULL){  
-        printf("不能打开文件!\n");  
+        printf("Open failed!\n");  
         return;  
     }  
     if(fread(&num,sizeof(int),1,fp)!=1){  
@@ -384,15 +384,15 @@ void IO_WriteInfo()
     int i;  
   
     if((fp=fopen("record.txt","wb"))==NULL){  
-        printf("不能打开文件!\n");  
+        printf("Open failed!\n");  
         return;  
     }  
     if(fwrite(&num,sizeof(int),1,fp)!=1){  
-        printf("写入文件错误!\n");  
+        printf("Write in failed!\n");  
     }  
     for (i=0;i<num;i++){  
         if(fwrite(&students[i],sizeof(student),1,fp)!=1){  
-	    printf("写入文件错误!\n");  
+	    printf("Write in failed!\n");  
         }  
     }      
   
@@ -409,13 +409,13 @@ void GradeInput()
     IO_ReadInfo();  
     while(1)  
     {  
-        printf("\n------ 学生成绩管理------\n");  
-        printf("1. 增加学生记录\n");  
-        printf("2. 修改学生记录\n");  
-        printf("3. 删除学生记录\n");  
-        printf("4. 按姓名查询学生记录\n");  
-        printf("0. 返回主菜单\n");  
-        printf("请选择(1 ~ 4), 0返回主菜单:\n");  
+        printf("\n------ Student store manage------\n");  
+        printf("1. Add student Grade\n");  
+        printf("2. Modify student Grade\n");  
+        printf("3. Add student Grade\n");  
+        printf("4. Searh_by_name\n");  
+        printf("0. Return to main\n");  
+        printf("Please choose(1 ~ 4), 0 to main:\n");  
         scanf("%d",&choice);  
         getchar();  
         switch(choice){  
@@ -437,13 +437,13 @@ void GradeTongJi(){
 
     //IO_ReadInfo();
     while(1){
-	printf("\n|----------------成绩统计-----------------|\n");
-	printf("|      1 ---- 按学号排序                  |\n");
-	printf("|      2 ---- 按平均分排序                |\n");
-	printf("|      3 ---- 统计分数段                  |\n");
-	printf("|      0 ---- 返回主菜单                  |\n");
-	printf("|-----------------------------------------|\n");
-	printf("请输入选项编号(1 ~ 3, 0返回主菜单):\n");
+	printf("\n|---------Achievement_Statistics-------------|\n");
+	printf("|      1 ---- Sort_by_ID                     |\n");
+	printf("|      2 ---- Sort_by_Average                |\n");
+	printf("|      3 ---- Statistical_franction_segment  |\n");
+	printf("|      0 ---- return to main                 |\n");
+	printf("|--------------------------------------------|\n");
+	printf("Please choose(1 ~ 3, 0 to main):\n");
 	scanf("%d", &choice);
 	getchar();
 	switch(choice){
@@ -451,6 +451,9 @@ void GradeTongJi(){
 	    case 2: Student_SortByAverage(); break;
 	    case 3: Student_Sort_EachSubject(); break;
 	    case 0: return; break;
+	    default: printf("%dis an illegal option, and press any key to choose again!\n", choice);
+	    getchar();
+	    getchar();
 	}
 	IO_WriteInfo();
     }
@@ -462,15 +465,15 @@ void GradeTongJi(){
 void Student_status_management(){
     int choice;
     do{
-	printf("|-----------------------------------------|\n");
-	printf("|          请输入选项编号(0 ~ 3)          |\n");
-	printf("|-----------------------------------------|\n");
-	printf("|      1 ---- 生成并打印补考通知单        |\n");
-	printf("|      2 ---- 生成并打印退学通知单        |\n");
-	printf("|      3 ---- 生成并打印新名册            |\n");
-	printf("|      0 ---- 返回主菜单                  |\n");
-	printf("|-----------------------------------------|\n");
-	printf("请输入选项编号(1 ~ 3, 0 返回):\n");
+	printf("|---------------------------------------------------|\n");
+	printf("|      Student_status_management                    |\n");
+	printf("|---------------------------------------------------|\n");
+	printf("|      1 --- Generate and print notice of make-up   |\n");
+	printf("|      2 --- Generate and print withdrawal notice   |\n");
+	printf("|      3 --- Generate and print entry lists         |\n");
+	printf("|      0 --- return to main                         |\n");
+	printf("|---------------------------------------------------|\n");
+	printf("Please choose(1 ~ 3, 0 to main):\n");
 	scanf("%d", &choice);
 	switch(choice)
 	{
@@ -478,7 +481,7 @@ void Student_status_management(){
 	    case 2: print_information_tuixue(); break;
 	    case 3: print_information_up(); break;
 	    case 0: return; break;
-	    default: printf("%d是非法选项,按任意建后重新选择!\n", choice);
+	    default: printf("%dis an illegal option, and press any key to choose again!\n", choice);
 	    getchar();
 	    getchar();
 	}
@@ -508,7 +511,7 @@ void print_information_tuixue(){
 	}
     }
     printf("\n---------------退学通知-----------------\n");  
-    printf("学号\t\t姓名\t挂科科目与挂科科目的对应成绩\n");
+    printf("ID\t\tName\tfail_Subject\n");
     for(int j = 0; j < num_of_studentfail; j++){
 	printf("%d\t", students_fail[j].ID);
 	printf("%s\t", students_fail[j].Name);
@@ -555,10 +558,10 @@ void print_information_up() {
 	    next[num_of_up] = students[i];
 	}
     }
-    printf("\n升入高年级学生的学号与姓名:\n");
+    printf("\nthe ID and name of students entering senior class:\n");
     for(int j = 0; j < num_of_up; j++){
 	printf("ID: %d\t", next[j].ID);
-	printf("姓名: %s\n", next[j].Name);
+	printf("Name: %s\n", next[j].Name);
     }
 
     return;
