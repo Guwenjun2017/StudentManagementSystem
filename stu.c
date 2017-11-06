@@ -216,12 +216,12 @@ void Student_SortByAverage(){
     int i, j;  
     student tmp;  
 
-    for(i=0;i<num;i++){  
-	for (j=1;j<num-i;j++){  
-	    if(students[j-1].Average<students[j].Average){  
-		tmp=students[j-1];  
-                students[j-1]=students[j];  
-                students[j]=tmp;  
+    for(i = 0; i < num; i++){  
+	for (j = 1; j < num-i; j++){  
+	    if(students[j - 1].Average < students[j].Average){  
+		tmp=students[j - 1];  
+                students[j - 1] = students[j];  
+                students[j] = tmp;  
              }  
         }  
     }  
@@ -235,14 +235,14 @@ void Student_SortByID(){
     int i, j;
     student tmp;
 
-    for(i = 0; i < num; i++){
-	for(j = 1; j < num - i; j++){
-	    if(students[j - 1].ID < students[j].ID){
-		tmp = students[j - 1];
-		students[j - 1] = students[j];
-		students[j] = tmp;
+    for(j = 0; j < num - 1; j++){
+	for(i = 0; i < num - 1; i++){
+	    if((strcmp(students[i].ID, students[i + 1].ID)) > 0){
+		tmp = students[i];
+		students[i] = students[i + 1];
+		students[i + 1] = tmp;
 	    }
-	}
+        }
     }
     Student_Display();
 
@@ -354,6 +354,138 @@ void Student_Display()
     return;
 }  
   
+/******************************************学籍处理模块****************************************************/
+//补考通知
+void print_information_bukao(){
+    //初始挂科数为0
+    int num_of_fail = 0;
+    //初始补考人数设为-1,因计数从0开始
+    int num_of_studentbukao = -1;
+    for(int i = 0; i < num; i++){
+	if(students[i].math < 60)
+	    num_of_fail++;
+	if(students[i].engl < 60)
+	    num_of_fail++;
+	if(students[i].phys < 60)
+	    num_of_fail++;
+	if(students[i].elec < 60)
+	    num_of_fail++;
+	if(students[i].CII < 60)
+	    num_of_fail++;
+	if(num_of_fail > 0){
+	    num_of_studentbukao++;
+	}
+	if(num_of_studentbukao != -1){
+	    students_bukao[num_of_studentbukao] = students[i];
+	}
+    } 
+
+    if(num_of_studentbukao == -1){
+	printf("No students need to bukao.\n");
+    }
+
+    printf("\n-----------补考通知(学生ID Name和挂科科目成绩)-------------\n");  
+    for(int j = 0; j < num_of_studentbukao; j++){
+        printf("%s\t", students_bukao[j].ID);
+        printf("%s\t", students_bukao[j].Name);
+        if(students_bukao[j].math < 60){
+            printf("math:  %5.2f|", students_bukao[j].math);
+        }
+        if(students_bukao[j].engl < 60){
+            printf("engl:  %5.2f|", students_bukao[j].engl);
+        }
+        if(students_bukao[j].phys < 60){
+            printf("phys:  %5.2f|", students_bukao[j].phys);
+        }
+        if(students_bukao[j].elec < 60){
+            printf("elec:  %5.2f|", students_bukao[j].elec);
+        }
+        if(students_bukao[j].CII < 60){
+            printf("CII:  %5.2f|", students_bukao[j].CII);
+        }
+        printf("\n");
+    }  
+
+    return;
+}
+//退学通知
+void print_information_tuixue(){
+    //初始挂科数为0
+    int num_of_fail = 0;
+    //初始退学人数设为-1,因计数从0开始
+    int num_of_studentfail = -1; 
+    for(int i = 0; i < num; i++){
+	if(students[i].math < 60)
+	    num_of_fail++;
+	if(students[i].engl < 60)
+	    num_of_fail++;
+	if(students[i].phys < 60)
+	    num_of_fail++;
+	if(students[i].elec < 60)
+	    num_of_fail++;
+	if(students[i].CII < 60)
+	    num_of_fail++;
+	if(num_of_fail >= 3){
+	    num_of_studentfail++;
+	    students_fail[num_of_studentfail] = students[i];
+	}
+    }
+    printf("\n-----------退学通知(学生ID Name和挂科科目成绩)-------------\n");  
+    for(int j = 0; j < num_of_studentfail; j++){
+        printf("%s\t", students_fail[j].ID);
+        printf("%s\t", students_fail[j].Name);
+        if(students_fail[j].math < 60){
+            printf("math:  %5.2f|", students_fail[j].math);
+        }
+        if(students_fail[j].engl < 60){
+            printf("engl:  %5.2f|", students_fail[j].engl);
+        }
+        if(students_fail[j].phys < 60){
+            printf("phys:  %5.2f|", students_fail[j].phys);
+        }
+        if(students_fail[j].elec < 60){
+            printf("elec:  %5.2f|", students_fail[j].elec);
+        }
+        if(students_fail[j].CII < 60){
+            printf("CII:  %5.2f|", students_fail[j].CII);
+        }
+        printf("\n");
+    }  
+
+    return;
+} 
+
+//升学学生
+void print_information_up() {
+    //初始挂科数为0
+    int num_of_fail = 0;
+    //初始升学人数设为-1,因计数从0开始
+    int num_of_up = -1; 
+    for(int i = 0; i < num; i++){
+	if(students[i].math < 60)
+	    num_of_fail++;
+	if(students[i].engl < 60)
+	    num_of_fail++;
+	if(students[i].phys < 60)
+	    num_of_fail++;
+	if(students[i].elec < 60)
+	    num_of_fail++;
+	if(students[i].CII < 60)
+	    num_of_fail++;
+	if(num_of_fail <= 2){
+	    num_of_up++;
+	    next[num_of_up] = students[i];
+	}
+    }
+    printf("\nthe ID and name of students entering senior class:\n");
+    for(int j = 0; j < num_of_up; j++){
+	printf("ID: %s\t", next[j].ID);
+	printf("Name: %s\n", next[j].Name);
+    }
+
+    return;
+}
+
 /*********************************************文件读写模块*************************************************/
 /*将学生信息从文件读出*/  
 void IO_ReadInfo()  
@@ -412,18 +544,21 @@ void GradeInput()
         printf("\n------ Student store manage------\n");  
         printf("1. Add student Grade\n");  
         printf("2. Modify student Grade\n");  
-        printf("3. Add student Grade\n");  
+        printf("3. Delete student Grade\n");  
         printf("4. Searh_by_name\n");  
         printf("0. Return to main\n");  
         printf("Please choose(1 ~ 4), 0 to main:\n");  
         scanf("%d",&choice);  
         getchar();  
         switch(choice){  
-        case 1: Student_Insert(); break;  
-        case 2: Student_Modify(); break;  
-        case 3: Student_Delete(); break;  
-        case 4: Student_Select(); break;  
-        case 0: return; break;  
+	    case 1: Student_Insert(); break;  
+	    case 2: Student_Modify(); break;  
+	    case 3: Student_Delete(); break;  
+	    case 4: Student_Select(); break;  
+	    case 0: return; break;  
+	    default: printf("%dis an illegal option, and press any key to choose again!\n", choice);
+	    getchar();
+	    getchar();
         }  
         IO_WriteInfo();  
     }  
@@ -477,7 +612,7 @@ void Student_status_management(){
 	scanf("%d", &choice);
 	switch(choice)
 	{
-	    //case 1: print_information_bukao(); break;
+	    case 1: print_information_bukao(); break;
 	    case 2: print_information_tuixue(); break;
 	    case 3: print_information_up(); break;
 	    case 0: return; break;
@@ -486,83 +621,5 @@ void Student_status_management(){
 	    getchar();
 	}
     }while(1);
-}
-
-//补考通知
-void print_information_tuixue(){
-    //初始挂科数为0
-    int num_of_fail = 0;
-    //初始补考人数设为-1,因计数从0开始
-    int num_of_studentfail = -1; 
-    for(int i = 0; i < num; i++){
-	if(students[i].math < 60)
-	    num_of_fail++;
-	if(students[i].engl < 60)
-	    num_of_fail++;
-	if(students[i].phys < 60)
-	    num_of_fail++;
-	if(students[i].elec < 60)
-	    num_of_fail++;
-	if(students[i].CII < 60)
-	    num_of_fail++;
-	if(num_of_fail >= 3){
-	    num_of_studentfail++;
-	    students_fail[num_of_studentfail] = students[i];
-	}
-    }
-    printf("\n---------------退学通知-----------------\n");  
-    for(int j = 0; j < num_of_studentfail; j++){
-        printf("%s\t", students_fail[j].ID);
-        printf("%s\t", students_fail[j].Name);
-        if(students_fail[j].math < 60){
-            printf("math:  %5.2f|", students_fail[j].math);
-        }
-        if(students_fail[j].engl < 60){
-            printf("engl:  %5.2f|", students_fail[j].engl);
-        }
-        if(students_fail[j].phys < 60){
-            printf("phys:  %5.2f|", students_fail[j].phys);
-        }
-        if(students_fail[j].elec < 60){
-            printf("elec:  %5.2f|", students_fail[j].elec);
-        }
-        if(students_fail[j].CII < 60){
-            printf("CII:  %5.2f|", students_fail[j].CII);
-        }
-        printf("\n");
-    }  
-
-    return;
-} 
-
-//升学学生
-void print_information_up() {
-    //初始挂科数为0
-    int num_of_fail = 0;
-    //初始升学人数设为-1,因计数从0开始
-    int num_of_up = -1; 
-    for(int i = 0; i < num; i++){
-	if(students[i].math < 60)
-	    num_of_fail++;
-	if(students[i].engl < 60)
-	    num_of_fail++;
-	if(students[i].phys < 60)
-	    num_of_fail++;
-	if(students[i].elec < 60)
-	    num_of_fail++;
-	if(students[i].CII < 60)
-	    num_of_fail++;
-	if(num_of_fail <= 2){
-	    num_of_up++;
-	    next[num_of_up] = students[i];
-	}
-    }
-    printf("\nthe ID and name of students entering senior class:\n");
-    for(int j = 0; j < num_of_up; j++){
-	printf("ID: %s\t", next[j].ID);
-	printf("Name: %s\n", next[j].Name);
-    }
-
-    return;
 }
 

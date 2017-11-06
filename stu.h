@@ -7,19 +7,22 @@ void Student_Display();
 /*定义学生结构体*/  
 typedef struct Student  
 {  
-     char ID[20];  
-     char Name[20];  
-     float math;  
-     float engl;  
-     float phys;  
-     float elec;  
-     float CII;  
-     float Average;  
+    //ID类型为char数组,谨记!!! 
+    char ID[20];  
+    char Name[20];  
+    float math;  
+    float engl;  
+    float phys;  
+    float elec;  
+    float CII;  
+    float Average;  
 }student;  
 
 /*声明学生数组及学生数量*/  
 student students[1000];  
-//补考学生数组
+//有挂科的学生的数组
+student students_bukao[1000];
+//退学学生数组
 student students_fail[1000];
 //升学学生数组
 student next[1000];

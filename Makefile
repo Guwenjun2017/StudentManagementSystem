@@ -1,4 +1,6 @@
-test: stu.c test.c
-	gcc test.c stu.c -o test
+objs = test.c stu.c 
+
+test: $(objs)
+	gcc -o test $(objs)
 clean:
 	rm test
