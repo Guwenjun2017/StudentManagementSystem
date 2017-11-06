@@ -38,7 +38,7 @@ int Student_SearchByIndex(char id[]);
 int Student_SearchByName(char name[]);  
 
 /*显示单条学生记录*/  
-void Student_DisplaySingle(int index);
+void Student_DisplaySingle(int);
 
 /*插入学生信息*/  
 void Student_Insert();
