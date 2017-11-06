@@ -481,7 +481,7 @@ void Student_status_management(){
 	    case 2: print_information_tuixue(); break;
 	    case 3: print_information_up(); break;
 	    case 0: return; break;
-	    default: printf("%dis an illegal option, and press any key to choose again!\n", choice);
+	    default: printf("%d is an illegal option, and press any key to choose again!\n", choice);
 	    getchar();
 	    getchar();
 	}
@@ -511,26 +511,25 @@ void print_information_tuixue(){
 	}
     }
     printf("\n---------------退学通知-----------------\n");  
-    printf("ID\t\tName\tfail_Subject\n");
     for(int j = 0; j < num_of_studentfail; j++){
-	printf("%d\t", students_fail[j].ID);
-	printf("%s\t", students_fail[j].Name);
-	if(students_fail[j].math < 60){
-	    printf("math:  %5.2f|", students_fail[j].math);
-	}
-	if(students_fail[j].engl < 60){
-	    printf("engl:  %5.2f|", students_fail[j].engl);
-	}
-	if(students_fail[j].phys < 60){
-	    printf("phys:  %5.2f|", students_fail[j].phys);
-	}
-	if(students_fail[j].elec < 60){
-	    printf("elec:  %5.2f|", students_fail[j].elec);
-	}
-	if(students_fail[j].CII < 60){
-	    printf("CII:  %5.2f|", students_fail[j].CII);
-	}
-	printf("\n");
+        printf("%s\t", students_fail[j].ID);
+        printf("%s\t", students_fail[j].Name);
+        if(students_fail[j].math < 60){
+            printf("math:  %5.2f|", students_fail[j].math);
+        }
+        if(students_fail[j].engl < 60){
+            printf("engl:  %5.2f|", students_fail[j].engl);
+        }
+        if(students_fail[j].phys < 60){
+            printf("phys:  %5.2f|", students_fail[j].phys);
+        }
+        if(students_fail[j].elec < 60){
+            printf("elec:  %5.2f|", students_fail[j].elec);
+        }
+        if(students_fail[j].CII < 60){
+            printf("CII:  %5.2f|", students_fail[j].CII);
+        }
+        printf("\n");
     }  
 
     return;
@@ -560,7 +559,7 @@ void print_information_up() {
     }
     printf("\nthe ID and name of students entering senior class:\n");
     for(int j = 0; j < num_of_up; j++){
-	printf("ID: %d\t", next[j].ID);
+	printf("ID: %s\t", next[j].ID);
 	printf("Name: %s\n", next[j].Name);
     }
 
