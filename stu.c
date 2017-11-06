@@ -36,7 +36,7 @@ int Student_SearchByName(char name[]){
   
 /*显示单条学生记录*/  
 void Student_DisplaySingle(int index){  
-    printf("%10s %10s %10s %10s %10s %10s %10s\t%10s \n","ID","Name","math","engl","phys","elec","CII","平均成绩");  
+    printf("%10s %10s %10s %10s %10s %10s %10s\t%10s \n","Name","math","engl","phys","elec","CII","平均成绩");  
     printf("------------------------------------------------------------------------------------------\n");  
     printf("%7s %10s %10.2f %10.2f %9.2f %9.2f %12.2f %13.2f\n",students[index].ID,students[index].Name,  
               students[index].math, students[index].engl, students[index].phys, students[index].elec, students[index].CII, students[index].Average);  
@@ -328,7 +328,7 @@ void Student_Sort_EachSubject(){
 	    CII5++;
     }
 
-    printf("\t\t90分以上\t80 ~ 89\t\t70~79\t\t60~69\t\t60以下\t\n");
+    printf("\e[33m\e[1m%s\e[0m","\t\t90分以上\t80 ~ 89\t\t70~79\t\t60~69\t\t60以下\t\n");
     printf("--------------------------------------------------------------------------------------\n");  
     printf("math:\t\t %d\t\t %d\t\t %d\t\t %d\t\t %d\n",math1, math2, math3, math4, math5);
     printf("engl:\t\t %d\t\t %d\t\t %d\t\t %d\t\t %d\n",engl1, engl2, engl3, engl4, engl5);
@@ -344,7 +344,7 @@ void Student_Display()
 {  
     int i;  
 
-    printf("%10s %10s %10s %10s %10s %10s %10s\t%10s \n","ID","Name","math","engl","phys","elec","CII","Average");  
+    printf("%10s %10s %10s %10s %10s %10s %10s\t%10s \n","ID","ID","Name","math","engl","phys","elec","CII","Average");  
     printf("------------------------------------------------------------------------------------------\n");  
     for (i=0;i<num;i++){  
         printf("%7s %10s %10.2f %10.2f %9.2f %9.2f %12.2f %13.2f\n", students[i].ID, students[i].Name,  
@@ -384,7 +384,7 @@ void print_information_bukao(){
 	printf("No students need to bukao.\n");
     }
 
-    printf("\n-----------补考通知(学生ID Name和挂科科目成绩)-------------\n");  
+    printf("\e[33m\e[1m%s\e[0m","\n-----------补考通知(学生ID Name和挂科科目成绩)-------------\n");  
     for(int j = 0; j < num_of_studentbukao; j++){
         printf("%s\t", students_bukao[j].ID);
         printf("%s\t", students_bukao[j].Name);
@@ -430,7 +430,7 @@ void print_information_tuixue(){
 	    students_fail[num_of_studentfail] = students[i];
 	}
     }
-    printf("\n-----------退学通知(学生ID Name和挂科科目成绩)-------------\n");  
+    printf("\e[33m\e[1m%s\e[0m","\n-----------退学通知(学生ID Name和挂科科目成绩)-------------\n");  
     for(int j = 0; j < num_of_studentfail; j++){
         printf("%s\t", students_fail[j].ID);
         printf("%s\t", students_fail[j].Name);
@@ -477,7 +477,7 @@ void print_information_up() {
 	    next[num_of_up] = students[i];
 	}
     }
-    printf("\nthe ID and name of students entering senior class:\n");
+    printf("\e[33m\e[1m%s\e[0m","\nthe ID and name of students entering senior class:\n");
     for(int j = 0; j < num_of_up; j++){
 	printf("ID: %s\t", next[j].ID);
 	printf("Name: %s\n", next[j].Name);
@@ -541,13 +541,13 @@ void GradeInput()
     IO_ReadInfo();  
     while(1)  
     {  
-        printf("\n------ Student store manage------\n");  
-        printf("1. Add student Grade\n");  
-        printf("2. Modify student Grade\n");  
-        printf("3. Delete student Grade\n");  
-        printf("4. Searh_by_name\n");  
-        printf("0. Return to main\n");  
-        printf("Please choose(1 ~ 4), 0 to main:\n");  
+        printf("\e[32m\e[1m%s\e[0m","\n------ Student store manage------\n");  
+        printf("\e[32m\e[1m%s\e[0m","1. Add student Grade\n");  
+        printf("\e[32m\e[1m%s\e[0m","2. Modify student Grade\n");  
+        printf("\e[32m\e[1m%s\e[0m","3. Delete student Grade\n");  
+        printf("\e[32m\e[1m%s\e[0m","4. Searh_by_name\n");  
+        printf("\e[32m\e[1m%s\e[0m","0. Return to main\n");  
+        printf("\e[32m\e[1m%s\e[0m","Please choose(1 ~ 4), 0 to main:\n");  
         scanf("%d",&choice);  
         getchar();  
         switch(choice){  
@@ -556,7 +556,7 @@ void GradeInput()
 	    case 3: Student_Delete(); break;  
 	    case 4: Student_Select(); break;  
 	    case 0: return; break;  
-	    default: printf("%dis an illegal option, and press any key to choose again!\n", choice);
+	    default: printf("\e[31m\e[1m%s\e[0m","It is an illegal option, and press any key to choose again!\n");
 	    getchar();
 	    getchar();
         }  
@@ -572,13 +572,13 @@ void GradeTongJi(){
 
     //IO_ReadInfo();
     while(1){
-	printf("\n|---------Achievement_Statistics-------------|\n");
-	printf("|      1 ---- Sort_by_ID                     |\n");
-	printf("|      2 ---- Sort_by_Average                |\n");
-	printf("|      3 ---- Statistical_franction_segment  |\n");
-	printf("|      0 ---- return to main                 |\n");
-	printf("|--------------------------------------------|\n");
-	printf("Please choose(1 ~ 3, 0 to main):\n");
+	printf("\e[32m\e[1m%s\e[0m","\n|---------Achievement_Statistics-------------|\n");
+	printf("\e[32m\e[1m%s\e[0m","|      1 ---- Sort_by_ID                     |\n");
+	printf("\e[32m\e[1m%s\e[0m","|      2 ---- Sort_by_Average                |\n");
+	printf("\e[32m\e[1m%s\e[0m","|      3 ---- Statistical_franction_segment  |\n");
+	printf("\e[32m\e[1m%s\e[0m","|      0 ---- return to main                 |\n");
+	printf("\e[32m\e[1m%s\e[0m","|--------------------------------------------|\n");
+	printf("\e[32m\e[1m%s\e[0m","Please choose(1 ~ 3, 0 to main):\n");
 	scanf("%d", &choice);
 	getchar();
 	switch(choice){
@@ -586,7 +586,7 @@ void GradeTongJi(){
 	    case 2: Student_SortByAverage(); break;
 	    case 3: Student_Sort_EachSubject(); break;
 	    case 0: return; break;
-	    default: printf("%dis an illegal option, and press any key to choose again!\n", choice);
+	    default: printf("\e[31m\e[1m%s\e[0m","It is an illegal option, and press any key to choose again!\n");
 	    getchar();
 	    getchar();
 	}
@@ -600,15 +600,15 @@ void GradeTongJi(){
 void Student_status_management(){
     int choice;
     do{
-	printf("|---------------------------------------------------|\n");
-	printf("|      Student_status_management                    |\n");
-	printf("|---------------------------------------------------|\n");
-	printf("|      1 --- Generate and print notice of make-up   |\n");
-	printf("|      2 --- Generate and print withdrawal notice   |\n");
-	printf("|      3 --- Generate and print entry lists         |\n");
-	printf("|      0 --- return to main                         |\n");
-	printf("|---------------------------------------------------|\n");
-	printf("Please choose(1 ~ 3, 0 to main):\n");
+	printf("\e[32m\e[1m%s\e[0m","|---------------------------------------------------|\n");
+	printf("\e[32m\e[1m%s\e[0m","|      Student_status_management                    |\n");
+	printf("\e[32m\e[1m%s\e[0m","|---------------------------------------------------|\n");
+	printf("\e[32m\e[1m%s\e[0m","|      1 --- Generate and print notice of make-up   |\n");
+	printf("\e[32m\e[1m%s\e[0m","|      2 --- Generate and print withdrawal notice   |\n");
+	printf("\e[32m\e[1m%s\e[0m","|      3 --- Generate and print entry lists         |\n");
+	printf("\e[32m\e[1m%s\e[0m","|      0 --- return to main                         |\n");
+	printf("\e[32m\e[1m%s\e[0m","|---------------------------------------------------|\n");
+	printf("\e[32m\e[1m%s\e[0m","Please choose(1 ~ 3, 0 to main):\n");
 	scanf("%d", &choice);
 	switch(choice)
 	{
@@ -616,7 +616,7 @@ void Student_status_management(){
 	    case 2: print_information_tuixue(); break;
 	    case 3: print_information_up(); break;
 	    case 0: return; break;
-	    default: printf("%d is an illegal option, and press any key to choose again!\n", choice);
+	    default: printf("\e[31m\e[1m%s\e[0m","It is an illegal option, and press any key to choose again!\n");
 	    getchar();
 	    getchar();
 	}

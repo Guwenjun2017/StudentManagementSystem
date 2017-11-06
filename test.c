@@ -8,15 +8,17 @@ int main(int argc, char **argv)
     int choice;
     IO_ReadInfo();
     do{
-	printf("|---------------------------------------------|\n");
-	printf("|                 main                        |\n");
-	printf("|---------------------------------------------|\n");
-	printf("|      1 ---- Result input                    |\n");
-	printf("|      2 ---- Achievement statistics          |\n");
-	printf("|      3 ---- Student status management       |\n");
-	printf("|      0 ---- Exit                            |\n");
-	printf("|---------------------------------------------|\n");
-	printf("Please choose(1 ~ 3, 0 exit):\n");
+	system("sl");
+	system("clear");
+	printf("\e[32m\e[1m%s\e[0m","|---------------------------------------------|\n");
+	printf("\e[32m\e[1m%s\e[0m","|                 main                        |\n");
+	printf("\e[32m\e[1m%s\e[0m","|---------------------------------------------|\n");
+	printf("\e[32m\e[1m%s\e[0m","|      1 ---- Result input                    |\n");
+	printf("\e[32m\e[1m%s\e[0m","|      2 ---- Achievement statistics          |\n");
+	printf("\e[32m\e[1m%s\e[0m","|      3 ---- Student status management       |\n");
+	printf("\e[32m\e[1m%s\e[0m","|      0 ---- Exit                            |\n");
+	printf("\e[32m\e[1m%s\e[0m","|---------------------------------------------|\n");
+	printf("\e[32m\e[1m%s\e[0m","Please choose(1 ~ 3, 0 exit):\n");
 	scanf("%d", &choice);
 	switch(choice)
 	{
@@ -24,7 +26,7 @@ int main(int argc, char **argv)
 	    case 2: GradeTongJi(); break;
 	    case 3: Student_status_management(); break;
 	    case 0: exit(0);
-	    default: printf("%d is an illegal option, and press any key to choose again!\n", choice);
+	    default: printf("\e[31m\e[1m%s\e[0m","It is an illegal option, and press any key to choose again!\n");
 	    getchar();
 	    getchar();
 	}

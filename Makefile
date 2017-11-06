@@ -1,6 +1,6 @@
 objs = test.c stu.c 
 
-test: $(objs)
-	gcc -o test $(objs)
+last: $(objs)
+	gcc -o last $(objs)
 clean:
-	rm test
+	rm last
