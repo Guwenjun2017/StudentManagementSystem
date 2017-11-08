@@ -1,20 +1,17 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "stu.h"
 
 //初始学生数为0
-int num = 0;
+int num_of_students = 0;
 
 /*求平均值*/  
-float Avg(student stu){  
+float Average(student stu){  
     return (stu.math + stu.engl + stu.phys + stu.elec + stu.CII) / 5;  
 }  
   
 /*通过学号返回数组下标*/  
 int Student_SearchByIndex(char id[]){  
     int i;  
-    for(i=0;i<num;i++){  
+    for(i=0;i<num_of_students;i++){  
 	if (strcmp(students[i].ID, id)==0)  
         {  
 	    return i;  
@@ -26,7 +23,7 @@ int Student_SearchByIndex(char id[]){
 /*通过姓名返回数组下标*/  
 int Student_SearchByName(char name[]){  
     int i;  
-    for(i=0;i<num;i++){  
+    for(i=0;i<num_of_students;i++){  
         if (strcmp(students[i].Name, name) == 0){  
 	    return i;  
         }  
@@ -48,35 +45,35 @@ void Student_DisplaySingle(int index){
 void Student_Insert(){  
     while(1){  
 	printf("Input_ID:");  
-        scanf("%s",&students[num].ID);  
+        scanf("%s",&students[num_of_students].ID);  
         getchar();  
 	
         printf("Input_Name:");  
-        scanf("%s",&students[num].Name);  
+        scanf("%s",&students[num_of_students].Name);  
         getchar();  
 
         printf("Input_math:");  
-        scanf("%f",&students[num].math);  
+        scanf("%f",&students[num_of_students].math);  
         getchar();  
 
         printf("Input_engl:");  
-        scanf("%f",&students[num].engl);  
+        scanf("%f",&students[num_of_students].engl);  
         getchar();  
 
         printf("Input_phys:");  
-        scanf("%f",&students[num].phys);  
+        scanf("%f",&students[num_of_students].phys);  
         getchar();  
 
         printf("Input_elec:");  
-        scanf("%f",&students[num].elec);  
+        scanf("%f",&students[num_of_students].elec);  
         getchar();  
 
         printf("Input_CII:");  
-        scanf("%f",&students[num].CII);  
+        scanf("%f",&students[num_of_students].CII);  
         getchar();  
   
-        students[num].Average=Avg(students[num]);  
-        num++;  
+        students[num_of_students].Average=Average(students[num_of_students]);  
+        num_of_students++;  
   
         printf("Continue?(y/n)");  
   
@@ -133,7 +130,7 @@ void Student_Modify(){
             scanf("%f",&students[index].CII);  
             getchar();  
 
-            students[index].Average=Avg(students[index]);  
+            students[index].Average=Average(students[index]);  
         }  
   
         printf("Continue?(y/n)");  
@@ -166,11 +163,11 @@ void Student_Delete(){
             Student_DisplaySingle(index);  
             printf("Sure delete?(y/n)");  
             if(getchar()=='y'){  
-                for(i=index;i<num-1;i++){  
+                for(i=index;i<num_of_students-1;i++){  
 		    //把后边的对象都向前移动  
 		    students[i]=students[i+1];
                 }  
-                num--;  
+                num_of_students--;  
             }  
             getchar();  
         }  
@@ -216,10 +213,10 @@ void Student_SortByAverage(){
     int i, j;  
     student tmp;  
 
-    for(i = 0; i < num; i++){  
-	for (j = 1; j < num-i; j++){  
+    for(i = 0; i < num_of_students; i++){  
+	for (j = 1; j < num_of_students - i; j++){  
 	    if(students[j - 1].Average < students[j].Average){  
-		tmp=students[j - 1];  
+		tmp = students[j - 1];  
                 students[j - 1] = students[j];  
                 students[j] = tmp;  
              }  
@@ -235,8 +232,8 @@ void Student_SortByID(){
     int i, j;
     student tmp;
 
-    for(j = 0; j < num - 1; j++){
-	for(i = 0; i < num - 1; i++){
+    for(j = 0; j < num_of_students - 1; j++){
+	for(i = 0; i < num_of_students - 1; i++){
 	    if((strcmp(students[i].ID, students[i + 1].ID)) > 0){
 		tmp = students[i];
 		students[i] = students[i + 1];
@@ -259,7 +256,7 @@ void Student_Sort_EachSubject(){
     int CII1 = 0, CII2 = 0, CII3 = 0, CII4 = 0, CII5 = 0;
 
     //math
-    for(int i = 0; i < num; i++){
+    for(int i = 0; i < num_of_students; i++){
 	if(students[i].math >= 90)
 	    math1++;
 	else if(students[i].math >= 80)
@@ -273,7 +270,7 @@ void Student_Sort_EachSubject(){
     }
 
     //engl
-    for(int i = 0; i < num; i++){
+    for(int i = 0; i < num_of_students; i++){
 	if(students[i].engl >= 90)
 	    engl1++;
 	else if(students[i].engl >= 80)
@@ -287,7 +284,7 @@ void Student_Sort_EachSubject(){
     }
 
     //phys
-    for(int i = 0; i < num; i++){
+    for(int i = 0; i < num_of_students; i++){
 	if(students[i].phys >= 90)
 	    phys1++;
 	else if(students[i].phys >= 80)
@@ -301,7 +298,7 @@ void Student_Sort_EachSubject(){
     }
 
     //elec
-    for(int i = 0; i < num; i++){
+    for(int i = 0; i < num_of_students; i++){
 	if(students[i].elec >= 90)
 	    elec1++;
 	else if(students[i].elec >= 80)
@@ -315,7 +312,7 @@ void Student_Sort_EachSubject(){
     }
 
     //CII
-    for(int i = 0; i < num; i++){
+    for(int i = 0; i < num_of_students; i++){
 	if(students[i].CII >= 90)
 	    CII1++;
 	else if(students[i].CII >= 80)
@@ -346,7 +343,7 @@ void Student_Display()
 
     printf("%10s %10s %10s %10s %10s %10s %10s\t%10s \n","ID","ID","Name","math","engl","phys","elec","CII","Average");  
     printf("------------------------------------------------------------------------------------------\n");  
-    for (i=0;i<num;i++){  
+    for (i=0;i<num_of_students;i++){  
         printf("%7s %10s %10.2f %10.2f %9.2f %9.2f %12.2f %13.2f\n", students[i].ID, students[i].Name,  
              students[i].math, students[i].engl, students[i].phys, students[i].elec, students[i].CII, students[i].Average);  
     }  
@@ -358,34 +355,34 @@ void Student_Display()
 //补考通知
 void print_information_bukao(){
     //初始挂科数为0
-    int num_of_fail = 0;
+    int num_of_students_of_fail = 0;
     //初始补考人数设为-1,因计数从0开始
-    int num_of_studentbukao = -1;
-    for(int i = 0; i < num; i++){
+    int num_of_students_of_studentbukao = -1;
+    for(int i = 0; i < num_of_students; i++){
 	if(students[i].math < 60)
-	    num_of_fail++;
+	    num_of_students_of_fail++;
 	if(students[i].engl < 60)
-	    num_of_fail++;
+	    num_of_students_of_fail++;
 	if(students[i].phys < 60)
-	    num_of_fail++;
+	    num_of_students_of_fail++;
 	if(students[i].elec < 60)
-	    num_of_fail++;
+	    num_of_students_of_fail++;
 	if(students[i].CII < 60)
-	    num_of_fail++;
-	if(num_of_fail > 0){
-	    num_of_studentbukao++;
+	    num_of_students_of_fail++;
+	if(num_of_students_of_fail > 0){
+	    num_of_students_of_studentbukao++;
 	}
-	if(num_of_studentbukao != -1){
-	    students_bukao[num_of_studentbukao] = students[i];
+	if(num_of_students_of_studentbukao != -1){
+	    students_bukao[num_of_students_of_studentbukao] = students[i];
 	}
     } 
 
-    if(num_of_studentbukao == -1){
+    if(num_of_students_of_studentbukao == -1){
 	printf("No students need to bukao.\n");
     }
 
     printf("\e[33m\e[1m%s\e[0m","\n-----------补考通知(学生ID Name和挂科科目成绩)-------------\n");  
-    for(int j = 0; j < num_of_studentbukao; j++){
+    for(int j = 0; j < num_of_students_of_studentbukao; j++){
         printf("%s\t", students_bukao[j].ID);
         printf("%s\t", students_bukao[j].Name);
         if(students_bukao[j].math < 60){
@@ -411,27 +408,27 @@ void print_information_bukao(){
 //退学通知
 void print_information_tuixue(){
     //初始挂科数为0
-    int num_of_fail = 0;
+    int num_of_students_of_fail = 0;
     //初始退学人数设为-1,因计数从0开始
-    int num_of_studentfail = -1; 
-    for(int i = 0; i < num; i++){
+    int num_of_students_of_studentfail = -1; 
+    for(int i = 0; i < num_of_students; i++){
 	if(students[i].math < 60)
-	    num_of_fail++;
+	    num_of_students_of_fail++;
 	if(students[i].engl < 60)
-	    num_of_fail++;
+	    num_of_students_of_fail++;
 	if(students[i].phys < 60)
-	    num_of_fail++;
+	    num_of_students_of_fail++;
 	if(students[i].elec < 60)
-	    num_of_fail++;
+	    num_of_students_of_fail++;
 	if(students[i].CII < 60)
-	    num_of_fail++;
-	if(num_of_fail >= 3){
-	    num_of_studentfail++;
-	    students_fail[num_of_studentfail] = students[i];
+	    num_of_students_of_fail++;
+	if(num_of_students_of_fail >= 3){
+	    num_of_students_of_studentfail++;
+	    students_fail[num_of_students_of_studentfail] = students[i];
 	}
     }
     printf("\e[33m\e[1m%s\e[0m","\n-----------退学通知(学生ID Name和挂科科目成绩)-------------\n");  
-    for(int j = 0; j < num_of_studentfail; j++){
+    for(int j = 0; j < num_of_students_of_studentfail; j++){
         printf("%s\t", students_fail[j].ID);
         printf("%s\t", students_fail[j].Name);
         if(students_fail[j].math < 60){
@@ -458,27 +455,27 @@ void print_information_tuixue(){
 //升学学生
 void print_information_up() {
     //初始挂科数为0
-    int num_of_fail = 0;
+    int num_of_students_of_fail = 0;
     //初始升学人数设为-1,因计数从0开始
-    int num_of_up = -1; 
-    for(int i = 0; i < num; i++){
+    int num_of_students_of_up = -1; 
+    for(int i = 0; i < num_of_students; i++){
 	if(students[i].math < 60)
-	    num_of_fail++;
+	    num_of_students_of_fail++;
 	if(students[i].engl < 60)
-	    num_of_fail++;
+	    num_of_students_of_fail++;
 	if(students[i].phys < 60)
-	    num_of_fail++;
+	    num_of_students_of_fail++;
 	if(students[i].elec < 60)
-	    num_of_fail++;
+	    num_of_students_of_fail++;
 	if(students[i].CII < 60)
-	    num_of_fail++;
-	if(num_of_fail <= 2){
-	    num_of_up++;
-	    next[num_of_up] = students[i];
+	    num_of_students_of_fail++;
+	if(num_of_students_of_fail <= 2){
+	    num_of_students_of_up++;
+	    next[num_of_students_of_up] = students[i];
 	}
     }
     printf("\e[33m\e[1m%s\e[0m","\nthe ID and name of students entering senior class:\n");
-    for(int j = 0; j < num_of_up; j++){
+    for(int j = 0; j < num_of_students_of_up; j++){
 	printf("ID: %s\t", next[j].ID);
 	printf("Name: %s\n", next[j].Name);
     }
@@ -497,10 +494,10 @@ void IO_ReadInfo()
         printf("Open failed!\n");  
         return;  
     }  
-    if(fread(&num,sizeof(int),1,fp)!=1){  
-        num=-1;  
+    if(fread(&num_of_students,sizeof(int),1,fp)!=1){  
+        num_of_students=-1;  
     }else{  
-        for(i=0;i<num;i++){  
+        for(i=0;i<num_of_students;i++){  
 	    fread(&students[i],sizeof(student),1,fp);  
         }  
     }  
@@ -519,10 +516,10 @@ void IO_WriteInfo()
         printf("Open failed!\n");  
         return;  
     }  
-    if(fwrite(&num,sizeof(int),1,fp)!=1){  
+    if(fwrite(&num_of_students,sizeof(int),1,fp)!=1){  
         printf("Write in failed!\n");  
     }  
-    for (i=0;i<num;i++){  
+    for (i=0;i<num_of_students;i++){  
         if(fwrite(&students[i],sizeof(student),1,fp)!=1){  
 	    printf("Write in failed!\n");  
         }  
@@ -531,95 +528,3 @@ void IO_WriteInfo()
     fclose(fp);  
     return;
 }  
-  
-/*******************************************子菜单模块***************************************************/  
-//成绩录入模块
-void GradeInput()  
-{  
-    int choice;  
-  
-    IO_ReadInfo();  
-    while(1)  
-    {  
-        printf("\e[32m\e[1m%s\e[0m","\n------ Student store manage------\n");  
-        printf("\e[32m\e[1m%s\e[0m","1. Add student Grade\n");  
-        printf("\e[32m\e[1m%s\e[0m","2. Modify student Grade\n");  
-        printf("\e[32m\e[1m%s\e[0m","3. Delete student Grade\n");  
-        printf("\e[32m\e[1m%s\e[0m","4. Searh_by_name\n");  
-        printf("\e[32m\e[1m%s\e[0m","0. Return to main\n");  
-        printf("\e[32m\e[1m%s\e[0m","Please choose(1 ~ 4), 0 to main:\n");  
-        scanf("%d",&choice);  
-        getchar();  
-        switch(choice){  
-	    case 1: Student_Insert(); break;  
-	    case 2: Student_Modify(); break;  
-	    case 3: Student_Delete(); break;  
-	    case 4: Student_Select(); break;  
-	    case 0: return; break;  
-	    default: printf("\e[31m\e[1m%s\e[0m","It is an illegal option, and press any key to choose again!\n");
-	    getchar();
-	    getchar();
-        }  
-        IO_WriteInfo();  
-    }  
-
-    return;
-}  
-
-//成绩统计模块
-void GradeTongJi(){
-    int choice;
-
-    //IO_ReadInfo();
-    while(1){
-	printf("\e[32m\e[1m%s\e[0m","\n|---------Achievement_Statistics-------------|\n");
-	printf("\e[32m\e[1m%s\e[0m","|      1 ---- Sort_by_ID                     |\n");
-	printf("\e[32m\e[1m%s\e[0m","|      2 ---- Sort_by_Average                |\n");
-	printf("\e[32m\e[1m%s\e[0m","|      3 ---- Statistical_franction_segment  |\n");
-	printf("\e[32m\e[1m%s\e[0m","|      0 ---- return to main                 |\n");
-	printf("\e[32m\e[1m%s\e[0m","|--------------------------------------------|\n");
-	printf("\e[32m\e[1m%s\e[0m","Please choose(1 ~ 3, 0 to main):\n");
-	scanf("%d", &choice);
-	getchar();
-	switch(choice){
-	    case 1: Student_SortByID(); break;
-	    case 2: Student_SortByAverage(); break;
-	    case 3: Student_Sort_EachSubject(); break;
-	    case 0: return; break;
-	    default: printf("\e[31m\e[1m%s\e[0m","It is an illegal option, and press any key to choose again!\n");
-	    getchar();
-	    getchar();
-	}
-	IO_WriteInfo();
-    }
-
-    return;
-}
-
-//学籍处理
-void Student_status_management(){
-    int choice;
-    do{
-	printf("\e[32m\e[1m%s\e[0m","|---------------------------------------------------|\n");
-	printf("\e[32m\e[1m%s\e[0m","|      Student_status_management                    |\n");
-	printf("\e[32m\e[1m%s\e[0m","|---------------------------------------------------|\n");
-	printf("\e[32m\e[1m%s\e[0m","|      1 --- Generate and print notice of make-up   |\n");
-	printf("\e[32m\e[1m%s\e[0m","|      2 --- Generate and print withdrawal notice   |\n");
-	printf("\e[32m\e[1m%s\e[0m","|      3 --- Generate and print entry lists         |\n");
-	printf("\e[32m\e[1m%s\e[0m","|      0 --- return to main                         |\n");
-	printf("\e[32m\e[1m%s\e[0m","|---------------------------------------------------|\n");
-	printf("\e[32m\e[1m%s\e[0m","Please choose(1 ~ 3, 0 to main):\n");
-	scanf("%d", &choice);
-	switch(choice)
-	{
-	    case 1: print_information_bukao(); break;
-	    case 2: print_information_tuixue(); break;
-	    case 3: print_information_up(); break;
-	    case 0: return; break;
-	    default: printf("\e[31m\e[1m%s\e[0m","It is an illegal option, and press any key to choose again!\n");
-	    getchar();
-	    getchar();
-	}
-    }while(1);
-}
-

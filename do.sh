@@ -1,8 +1,8 @@
 #!/bin/bash
  
 spin=('\' '|' '/' '-')
-cnt=10
-for i in {1..10}; do
+cnt=6
+for i in {1..6}; do
     echo -n "Ready to system...left $((cnt--)) second, please wait... ${spin[$((cnt % 4))]}"
     echo -n -e \\r
     sleep 0.3

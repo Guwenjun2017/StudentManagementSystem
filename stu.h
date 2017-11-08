@@ -1,5 +1,8 @@
 #ifndef stu_h
 #define stu_h
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 void IO_ReadInfo();
 void Student_Display();
@@ -29,7 +32,7 @@ student next[1000];
    
 /*****************************成绩录入模块**************************************/
 /*求平均值*/  
-float Avg(student stu);
+float Average(student stu);
 
 /*通过学号返回数组下标*/  
 int Student_SearchByIndex(char id[]);
@@ -92,4 +95,6 @@ void GradeTongJi();
 //学籍处理
 void Student_status_management();
 
+/******主菜单*******/
+int mainMenu();
 #endif
