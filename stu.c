@@ -52,14 +52,12 @@ void Student_Insert(){
 	for(int i = 0; i < num_of_students - 1; i++){
 	    if(strcmp(students[num_of_students].ID, students[i].ID) == 0){
 		*a = 1;
-	//printf("%d\n", *a);
 	    }
 	}
 	if(*a == 1){
-	    printf("add error!This student is existed.");
+	    printf("\e[31m\e[1m%s\e[0m","add error!This student is existed.");
 	    break;
 	}
-	//printf("%d\n", *a);
 	
         printf("Input_Name:");  
         scanf("%s",&students[num_of_students].Name);  
@@ -88,7 +86,7 @@ void Student_Insert(){
         students[num_of_students].Average=Average(students[num_of_students]);  
         num_of_students++;  
   
-        printf("Continue?(y/n)");  
+        printf("\e[31m\e[1m%s\e[0m","Continue?(y/n)");  
   
         if (getchar()=='n'){  
              break;  
@@ -109,12 +107,12 @@ void Student_Modify(){
         getchar();  
         index=Students_SearchByID(id);  
         if(index==-1){  
-            printf("Not exist!\n");  
+            printf("\e[31m\e[1m%s\e[0m","Not exist!\n");  
         }  
         else{  
-            printf("你要修改的学生信息为:\n");  
+            printf("The infomation of the student you want to modify is:\n");  
             Student_DisplaySingle(index);  
-            printf("-- 请输入新值--\n");  
+            printf("-- please input new information--\n");  
             printf("Input_ID:");  
             scanf("%s",&students[index].ID);  
             getchar();  
@@ -146,7 +144,7 @@ void Student_Modify(){
             students[index].Average=Average(students[index]);  
         }  
   
-        printf("Continue?(y/n)");  
+        printf("\e[31m\e[1m%s\e[0m","Continue?(y/n)");  
         if(getchar()=='n'){  
 	    break;  
         }  
@@ -172,9 +170,9 @@ void Student_Delete(){
              printf("Not exist!\n");  
         }  
         else{  
-            printf("你要删除的学生的信息为:\n");  
+            printf("The infomation of the student you want to delete is:\n");  
             Student_DisplaySingle(index);  
-            printf("Sure delete?(y/n)");  
+            printf("\e[31m\e[1m%s\e[0m","Sure delete?(y/n)");  
             if(getchar()=='y'){  
                 for(i=index;i<num_of_students-1;i++){  
 		    //把后边的对象都向前移动  
@@ -185,7 +183,7 @@ void Student_Delete(){
             getchar();  
         }  
 
-        printf("Continue?(y/n)");  
+        printf("\e[31m\e[1m%s\e[0m","Continue?(y/n)");  
         if(getchar()=='n'){  
              break;  
         }  
@@ -205,13 +203,13 @@ void Student_SelectByName(){
         index=Student_SearchByName(name);  
 
         if (index==-1){  
-             printf("Not exist!\n");  
+             printf("\e[31m\e[1m%s\e[0m","Not exist!\n");  
         }else{  
-             printf("你要查询的学生信息为:\n");  
+             printf("The infomation of the student you want to search is:\n");  
              Student_DisplaySingle(index);  
         }  
 
-        printf("Continue?(y/n)");  
+        printf("\e[31m\e[1m%s\e[0m","Continue?(y/n)");  
         if (getchar()=='n'){  
              break;  
         }  
@@ -395,7 +393,7 @@ void print_information_bukao(){
     } 
 
     if(num_of_students_of_studentbukao == -1){
-	printf("No students need to bukao.\n");
+	printf("\e[33m\e[1m%s\e[0m","No students need to bukao.\n");
     }
 
     printf("\e[33m\e[1m%s\e[0m","\n-----------补考通知(学生ID Name和挂科科目成绩)-------------\n");  

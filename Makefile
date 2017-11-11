@@ -12,7 +12,7 @@ son_of_main.o : son_of_main.c stu.h
 	gcc -c $< -o $@ 
 mainMenu.o : mainMenu.c stu.h
 	gcc -c $< -o $@ 
-#clean
+
 .PHONY: clean
 clean:
 	rm *.o last
