@@ -23,7 +23,7 @@ void GradeInput()
 	    case 1: Student_Insert(); break;  
 	    case 2: Student_Modify(); break;  
 	    case 3: Student_Delete(); break;  
-	    case 4: Student_Select(); break;  
+	    case 4: Student_SelectByName(); break;  
 	    case 0: return; break;  
 	    default: printf("\e[31m\e[1m%s\e[0m","It is an illegal option, and press any key to choose again!\n");
 	    getchar();

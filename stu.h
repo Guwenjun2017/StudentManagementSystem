@@ -35,7 +35,7 @@ student next[1000];
 float Average(student stu);
 
 /*通过学号返回数组下标*/  
-int Student_SearchByIndex(char id[]);
+int Student_SearchByID(char id[]);
 
 /*通过姓名返回数组下标*/  
 int Student_SearchByName(char name[]);  
@@ -53,7 +53,7 @@ void Student_Modify();
 void Student_Delete();
 
 /*按姓名查询*/  
-void Student_Select(); 
+void Student_SelectByName(); 
 
 /*****************************成绩统计模块**************************************/
 /*按平均值排序*/  

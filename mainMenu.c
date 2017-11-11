@@ -6,9 +6,9 @@ int mainMenu()
     int choice;
     IO_ReadInfo();
     do{
-	system("sl");
 	//system("sl");
-	system("sh do.sh");
+	//system("sl");
+	//system("sh do.sh");
 	system("clear");
 	printf("\e[32m\e[1m%s\e[0m","|---------------------------------------------|\n");
 	printf("\e[32m\e[1m%s\e[0m","|                 main                        |\n");

@@ -9,7 +9,7 @@ float Average(student stu){
 }  
   
 /*通过学号返回数组下标*/  
-int Student_SearchByIndex(char id[]){  
+int Students_SearchByID(char id[]){  
     int i;  
     for(i=0;i<num_of_students;i++){  
 	if (strcmp(students[i].ID, id)==0)  
@@ -33,20 +33,33 @@ int Student_SearchByName(char name[]){
   
 /*显示单条学生记录*/  
 void Student_DisplaySingle(int index){  
-    printf("%10s %10s %10s %10s %10s %10s %10s\t%10s \n","Name","math","engl","phys","elec","CII","平均成绩");  
-    printf("------------------------------------------------------------------------------------------\n");  
-    printf("%7s %10s %10.2f %10.2f %9.2f %9.2f %12.2f %13.2f\n",students[index].ID,students[index].Name,  
-              students[index].math, students[index].engl, students[index].phys, students[index].elec, students[index].CII, students[index].Average);  
+    printf("%5s %9s %9s %9s %9s %9s %9s \t%9s  \n","ID","Name","math","engl","phys","elec","CII","平均成绩");
+    printf("------------------------------------------------------------------------------------------\n");
+    printf("%7s %7s %10.2f %9.2f %9.2f %9.2f %10.2f %10.2f\n",students[index].ID,students[index].Name,  
+              students[index].math, students[index].engl, students[index].phys, students[index].elec, \
+	      students[index].CII, students[index].Average);  
 
     return;
 }  
   
 /*插入学生信息*/  
 void Student_Insert(){  
+    int  *a = (int *)malloc(sizeof(int));
     while(1){  
 	printf("Input_ID:");  
         scanf("%s",&students[num_of_students].ID);  
         getchar();  
+	for(int i = 0; i < num_of_students - 1; i++){
+	    if(strcmp(students[num_of_students].ID, students[i].ID) == 0){
+		*a = 1;
+	//printf("%d\n", *a);
+	    }
+	}
+	if(*a == 1){
+	    printf("add error!This student is existed.");
+	    break;
+	}
+	//printf("%d\n", *a);
 	
         printf("Input_Name:");  
         scanf("%s",&students[num_of_students].Name);  
@@ -91,10 +104,10 @@ void Student_Modify(){
 	char id[20];  
         int index;  
   
-        printf("Please input ID of student which you want to modify:");  
+        printf("Please input the student's ID, the one you want to modify:");  
         scanf("%s",&id);  
         getchar();  
-        index=Student_SearchByIndex(id);  
+        index=Students_SearchByID(id);  
         if(index==-1){  
             printf("Not exist!\n");  
         }  
@@ -153,13 +166,13 @@ void Student_Delete(){
         printf("Please input ID of student which you want to delete:");  
         scanf("%s",&id);  
         getchar();  
-        index=Student_SearchByIndex(id);  
+        index=Students_SearchByID(id);  
 
         if(index==-1){  
              printf("Not exist!\n");  
         }  
         else{  
-            printf("你要删除的学生信息为:\n");  
+            printf("你要删除的学生的信息为:\n");  
             Student_DisplaySingle(index);  
             printf("Sure delete?(y/n)");  
             if(getchar()=='y'){  
@@ -182,11 +195,11 @@ void Student_Delete(){
 }  
   
 /*按姓名查询*/  
-void Student_Select(){  
+void Student_SelectByName(){  
     while(1){  
         char name[20];  
         int index;  
-        printf("Please input ID of student which you want to search:");  
+        printf("Please input the student's Name, the one you want to search:");  
         scanf("%s",&name);  
         getchar();  
         index=Student_SearchByName(name);  
@@ -210,6 +223,7 @@ void Student_Select(){
 /********************************************成绩统计模块**************************************************/
 /*按平均值排序*/  
 void Student_SortByAverage(){  
+    system("clear");
     int i, j;  
     student tmp;  
 
@@ -229,6 +243,7 @@ void Student_SortByAverage(){
    
 /*按学号排序*/
 void Student_SortByID(){
+    system("clear");
     int i, j;
     student tmp;
 
@@ -248,6 +263,7 @@ void Student_SortByID(){
 
 //各门课各分数段学生人数统计并打印
 void Student_Sort_EachSubject(){
+    system("clear");
     //IO_ReadInfo();
     int math1 = 0, math2 = 0, math3 = 0, math4 = 0, math5 = 0;
     int engl1 = 0, engl2 = 0, engl3 = 0, engl4 = 0, engl5 = 0;
@@ -354,6 +370,7 @@ void Student_Display()
 /******************************************学籍处理模块****************************************************/
 //补考通知
 void print_information_bukao(){
+    system("clear");
     //初始挂科数为0
     int num_of_students_of_fail = 0;
     //初始补考人数设为-1,因计数从0开始
@@ -407,6 +424,7 @@ void print_information_bukao(){
 }
 //退学通知
 void print_information_tuixue(){
+    system("clear");
     //初始挂科数为0
     int num_of_students_of_fail = 0;
     //初始退学人数设为-1,因计数从0开始
@@ -426,6 +444,9 @@ void print_information_tuixue(){
 	    num_of_students_of_studentfail++;
 	    students_fail[num_of_students_of_studentfail] = students[i];
 	}
+    }
+    if(num_of_students_of_studentfail == -1){
+	printf("No students need to fail.\n");
     }
     printf("\e[33m\e[1m%s\e[0m","\n-----------退学通知(学生ID Name和挂科科目成绩)-------------\n");  
     for(int j = 0; j < num_of_students_of_studentfail; j++){
@@ -454,6 +475,7 @@ void print_information_tuixue(){
 
 //升学学生
 void print_information_up() {
+    system("clear");
     //初始挂科数为0
     int num_of_students_of_fail = 0;
     //初始升学人数设为-1,因计数从0开始
