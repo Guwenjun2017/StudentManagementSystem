@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define RED_COLOR        "\e[31m\e[1m%s\e[0m"
+#define GREEN_COLOR      "\e[32m\e[1m%s\e[0m"
+#define YELLOW_COLOR     "\e[33m\e[1m%s\e[0m"
 
 void IO_ReadInfo();
 void Student_Display();
@@ -23,6 +26,7 @@ typedef struct Student
 
 /*声明学生数组及学生数量*/  
 student students[1000];  
+
 //有挂科的学生的数组
 student students_bukao[1000];
 //退学学生数组

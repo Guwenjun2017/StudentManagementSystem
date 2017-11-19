@@ -46,6 +46,7 @@ void Student_DisplaySingle(int index){
 void Student_Insert(){  
     int  *a = (int *)malloc(sizeof(int));
     while(1){  
+	system("clear");
 	printf("Input_ID:");  
         scanf("%s",&students[num_of_students].ID);  
         getchar();  
@@ -64,23 +65,63 @@ void Student_Insert(){
         getchar();  
 
         printf("Input_math:");  
-        scanf("%f",&students[num_of_students].math);  
+	do{
+	    scanf("%f",&students[num_of_students].math);  
+	    if(students[num_of_students].math >= 0 && students[num_of_students].math <= 100){
+		break;
+	    }else
+		printf(RED_COLOR,"Grade not in the limit!please input again.\n");
+	        printf(">>>>>>:");
+
+	}while(1);
         getchar();  
 
         printf("Input_engl:");  
-        scanf("%f",&students[num_of_students].engl);  
+	do{
+	    scanf("%f",&students[num_of_students].engl);  
+	    if(students[num_of_students].engl >= 0 && students[num_of_students].engl <= 100){
+		break;
+	    }else
+		printf(RED_COLOR,"Grade not in the limit!please input again.\n");
+	        printf(">>>>>>:");
+
+	}while(1);
         getchar();  
 
         printf("Input_phys:");  
-        scanf("%f",&students[num_of_students].phys);  
+	do{
+	    scanf("%f",&students[num_of_students].phys);  
+	    if(students[num_of_students].phys >= 0 && students[num_of_students].phys <= 100){
+		break;
+	    }else
+		printf(RED_COLOR,"Grade not in the limit!please input again.\n");
+	        printf(">>>>>>:");
+
+	}while(1);
         getchar();  
 
         printf("Input_elec:");  
-        scanf("%f",&students[num_of_students].elec);  
+	do{
+	    scanf("%f",&students[num_of_students].elec);  
+	    if(students[num_of_students].elec >= 0 && students[num_of_students].elec <= 100){
+		break;
+	    }else
+		printf(RED_COLOR,"Grade not in the limit!please input again.\n");
+	        printf(">>>>>>:");
+
+	}while(1);
         getchar();  
 
         printf("Input_CII:");  
-        scanf("%f",&students[num_of_students].CII);  
+	do{
+	    scanf("%f",&students[num_of_students].CII);  
+	    if(students[num_of_students].CII >= 0 && students[num_of_students].CII <= 100){
+		break;
+	    }else
+		printf(RED_COLOR,"Grade not in the limit!please input again.\n");
+	        printf(">>>>>>:");
+
+	}while(1);
         getchar();  
   
         students[num_of_students].Average=Average(students[num_of_students]);  
@@ -107,7 +148,7 @@ void Student_Modify(){
         getchar();  
         index=Students_SearchByID(id);  
         if(index==-1){  
-            printf("\e[31m\e[1m%s\e[0m","Not exist!\n");  
+            printf(GREEN_COLOR,"Not exist!\n");  
         }  
         else{  
             printf("The infomation of the student you want to modify is:\n");  
@@ -144,7 +185,7 @@ void Student_Modify(){
             students[index].Average=Average(students[index]);  
         }  
   
-        printf("\e[31m\e[1m%s\e[0m","Continue?(y/n)");  
+        printf(GREEN_COLOR,"Continue?(y/n)");  
         if(getchar()=='n'){  
 	    break;  
         }  
@@ -172,7 +213,7 @@ void Student_Delete(){
         else{  
             printf("The infomation of the student you want to delete is:\n");  
             Student_DisplaySingle(index);  
-            printf("\e[31m\e[1m%s\e[0m","Sure delete?(y/n)");  
+            printf(GREEN_COLOR,"Sure delete?(y/n)");  
             if(getchar()=='y'){  
                 for(i=index;i<num_of_students-1;i++){  
 		    //把后边的对象都向前移动  
@@ -183,7 +224,7 @@ void Student_Delete(){
             getchar();  
         }  
 
-        printf("\e[31m\e[1m%s\e[0m","Continue?(y/n)");  
+        printf(GREEN_COLOR,"Continue?(y/n)");  
         if(getchar()=='n'){  
              break;  
         }  
@@ -203,13 +244,13 @@ void Student_SelectByName(){
         index=Student_SearchByName(name);  
 
         if (index==-1){  
-             printf("\e[31m\e[1m%s\e[0m","Not exist!\n");  
+             printf(GREEN_COLOR,"Not exist!\n");  
         }else{  
              printf("The infomation of the student you want to search is:\n");  
              Student_DisplaySingle(index);  
         }  
 
-        printf("\e[31m\e[1m%s\e[0m","Continue?(y/n)");  
+        printf(GREEN_COLOR,"Continue?(y/n)");  
         if (getchar()=='n'){  
              break;  
         }  
@@ -339,7 +380,7 @@ void Student_Sort_EachSubject(){
 	    CII5++;
     }
 
-    printf("\e[33m\e[1m%s\e[0m","\t\t90分以上\t80 ~ 89\t\t70~79\t\t60~69\t\t60以下\t\n");
+    printf(GREEN_COLOR,"\t\t90分以上\t80 ~ 89\t\t70~79\t\t60~69\t\t60以下\t\n");
     printf("--------------------------------------------------------------------------------------\n");  
     printf("math:\t\t %d\t\t %d\t\t %d\t\t %d\t\t %d\n",math1, math2, math3, math4, math5);
     printf("engl:\t\t %d\t\t %d\t\t %d\t\t %d\t\t %d\n",engl1, engl2, engl3, engl4, engl5);
@@ -354,12 +395,14 @@ void Student_Sort_EachSubject(){
 void Student_Display()  
 {  
     int i;  
+    int Ranking = 0;
 
-    printf("%10s %10s %10s %10s %10s %10s %10s\t%10s \n","ID","ID","Name","math","engl","phys","elec","CII","Average");  
-    printf("------------------------------------------------------------------------------------------\n");  
+    printf("%10s| %10s| %10s| %10s| %10s| %10s| %10s| %10s| %10s| \n","ID","Name","math","engl","phys","elec","CII","Average","Ranking");  
+    printf("-----------------------------------------------------------------------------------------------------------------\n");  
     for (i=0;i<num_of_students;i++){  
-        printf("%7s %10s %10.2f %10.2f %9.2f %9.2f %12.2f %13.2f\n", students[i].ID, students[i].Name,  
-             students[i].math, students[i].engl, students[i].phys, students[i].elec, students[i].CII, students[i].Average);  
+	Ranking++;
+        printf("   %7s| %10s| %10.2f| %10.2f| %10.2f| %10.2f| %10.2f| %10.2f| %10d|\n", students[i].ID, students[i].Name,  
+             students[i].math, students[i].engl, students[i].phys, students[i].elec, students[i].CII, students[i].Average, Ranking);  
     }  
 
     return;
@@ -381,8 +424,7 @@ void print_information_bukao(){
 	if(students[i].phys < 60)
 	    num_of_students_of_fail++;
 	if(students[i].elec < 60)
-	    num_of_students_of_fail++;
-	if(students[i].CII < 60)
+	    num_of_students_of_fail++; if(students[i].CII < 60)
 	    num_of_students_of_fail++;
 	if(num_of_students_of_fail > 0){
 	    num_of_students_of_studentbukao++;
@@ -393,10 +435,10 @@ void print_information_bukao(){
     } 
 
     if(num_of_students_of_studentbukao == -1){
-	printf("\e[33m\e[1m%s\e[0m","No students need to bukao.\n");
+	printf(GREEN_COLOR,"No students need to bukao.\n");
     }
 
-    printf("\e[33m\e[1m%s\e[0m","\n-----------补考通知(学生ID Name和挂科科目成绩)-------------\n");  
+    printf(GREEN_COLOR,"\n-----------补考通知(学生ID Name和挂科科目成绩)-------------\n");  
     for(int j = 0; j < num_of_students_of_studentbukao; j++){
         printf("%s\t", students_bukao[j].ID);
         printf("%s\t", students_bukao[j].Name);
@@ -446,7 +488,7 @@ void print_information_tuixue(){
     if(num_of_students_of_studentfail == -1){
 	printf("No students need to fail.\n");
     }
-    printf("\e[33m\e[1m%s\e[0m","\n-----------退学通知(学生ID Name和挂科科目成绩)-------------\n");  
+    printf(GREEN_COLOR,"\n-----------退学通知(学生ID Name和挂科科目成绩)-------------\n");  
     for(int j = 0; j < num_of_students_of_studentfail; j++){
         printf("%s\t", students_fail[j].ID);
         printf("%s\t", students_fail[j].Name);
@@ -494,7 +536,7 @@ void print_information_up() {
 	    next[num_of_students_of_up] = students[i];
 	}
     }
-    printf("\e[33m\e[1m%s\e[0m","\nthe ID and name of students entering senior class:\n");
+    printf(GREEN_COLOR,"\nthe ID and name of students entering senior class:\n");
     for(int j = 0; j < num_of_students_of_up; j++){
 	printf("ID: %s\t", next[j].ID);
 	printf("Name: %s\n", next[j].Name);
