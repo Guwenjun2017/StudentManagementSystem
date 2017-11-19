@@ -53,6 +53,13 @@ void Student_Insert();
 /*修改学生信息*/  
 void Student_Modify();
 
+void modify_math();
+void modify_english();
+void modify_physics();
+void modify_electric();
+void modify_CII();
+void modify_all();
+
 /*删除学生信息*/  
 void Student_Delete();
 

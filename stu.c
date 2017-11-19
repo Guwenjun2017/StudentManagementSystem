@@ -153,37 +153,89 @@ void Student_Modify(){
         else{  
             printf("The infomation of the student you want to modify is:\n");  
             Student_DisplaySingle(index);  
-            printf("-- please input new information--\n");  
-            printf("Input_ID:");  
-            scanf("%s",&students[index].ID);  
-            getchar();  
+	    int choice;
+	    //do
+	    //{
+		printf("please choose the information you want to modify:\n");
+		printf("-1.math\n");
+		printf("-2.engl\n");
+		printf("-3.phys\n");
+		printf("-4.elec\n");
+		printf("-5.CII\n");
+		printf("-6.all information\n");
+		printf("-0.break\n");
+		scanf("%d", &choice);
+		if(1 == choice){
+		    printf("please input the new math score:");
+		    scanf("%f",&students[index].math);  
+		    students[index].Average=Average(students[index]);  
+		}
+		if(2 == choice){
+		    printf("please input the new english score:");
+		    scanf("%f",&students[index].engl);  
+		    students[index].Average=Average(students[index]);  
+		}
+		if(3 == choice){
+		    printf("please input the new physics score:");
+		    scanf("%f",&students[index].phys);  
+		    students[index].Average=Average(students[index]);  
+		}
+		if(4 == choice){
+		    printf("please input the new electric score:");
+		    scanf("%f",&students[index].elec);  
+		    students[index].Average=Average(students[index]);  
+		}
+		if(5 == choice){
+		    printf("please input the new CII score:");
+		    scanf("%f",&students[index].CII);  
+		    students[index].Average=Average(students[index]);  
+		}
+		if(6 == choice){
+		    printf("-- please input the all new information--\n");  
+		    printf("Input_ID:");  
+		    scanf("%s",&students[index].ID);  
+		    getchar();  
 
-            printf("Input_Name:");  
-            scanf("%s",&students[index].Name);  
-            getchar();  
+		    printf("Input_Name:");  
+		    scanf("%s",&students[index].Name);  
+		    getchar();  
 
-            printf("Input_math:");  
-            scanf("%f",&students[index].math);  
-            getchar();  
+		    printf("Input_math:");  
+		    scanf("%f",&students[index].math);  
+		    getchar();  
 
-            printf("Input_engl:");  
-            scanf("%f",&students[index].engl);  
-            getchar();  
+		    printf("Input_engl:");  
+		    scanf("%f",&students[index].engl);  
+		    getchar();  
 
-            printf("Input_phys:");  
-            scanf("%f",&students[index].phys);  
-            getchar();  
+		    printf("Input_phys:");  
+		    scanf("%f",&students[index].phys);  
+		    getchar();  
 
-            printf("Input_elec:");  
-            scanf("%f",&students[index].elec);  
-            getchar();  
+		    printf("Input_elec:");  
+		    scanf("%f",&students[index].elec);  
+		    getchar();  
 
-            printf("Input_CII:");  
-            scanf("%f",&students[index].CII);  
-            getchar();  
+		    printf("Input_CII:");  
+		    scanf("%f",&students[index].CII);  
+		    getchar();  
 
-            students[index].Average=Average(students[index]);  
-        }  
+		    students[index].Average=Average(students[index]);  
+		}
+		//switch(choice)
+		//{
+		//    case 1: modify_math();    break;
+		//    case 2: modify_english(); break;
+		//    case 3: modify_physics(); break;
+		//    case 4: modify_electric();break;
+		//    case 5: modify_CII();     break;
+		//    case 6: modify_all();     break;
+		//    case 0: break;
+		//    default: printf(RED_COLOR,"It is an illegal option, and press Enter to choose again!\n");
+		//    getchar();
+		//} 
+	    //}while(1);
+	} 
   
         printf(GREEN_COLOR,"Continue?(y/n)");  
         if(getchar()=='n'){  
@@ -194,8 +246,82 @@ void Student_Modify(){
     return;
 }  
   
-   
-  
+/*针对性修改学生成绩*/
+//1.
+//void modify_math(){
+//    printf("please input the new math score:");
+//    scanf("%f",&students[index].math);  
+//    students[index].Average=Average(students[index]);  
+//
+//    return;
+//}
+////2.
+//void modify_english(){
+//    printf("please input the new english score:");
+//    scanf("%f",&students[index].engl);  
+//    students[index].Average=Average(students[index]);  
+//
+//    return;
+//}
+////3.
+//void modify_physics(){
+//    printf("please input the new physics score:");
+//    scanf("%f",&students[index].phys);  
+//    students[index].Average=Average(students[index]);  
+//
+//    return;
+//}
+////4,
+//void modify_electric(){
+//    printf("please input the new electric score:");
+//    scanf("%f",&students[index].elec);  
+//    students[index].Average=Average(students[index]);  
+//
+//    return;
+//}
+////5. 
+//void modify_CII(){
+//    printf("please input the new CII score:");
+//    scanf("%f",&students[index].CII);  
+//    students[index].Average=Average(students[index]);  
+//
+//    return;
+//}
+//6.
+//void modify_all(){
+//    printf("-- please input the all new information--\n");  
+//    printf("Input_ID:");  
+//    scanf("%s",&students[index].ID);  
+//    getchar();  
+//
+//    printf("Input_Name:");  
+//    scanf("%s",&students[index].Name);  
+//    getchar();  
+//
+//    printf("Input_math:");  
+//    scanf("%f",&students[index].math);  
+//    getchar();  
+//
+//    printf("Input_engl:");  
+//    scanf("%f",&students[index].engl);  
+//    getchar();  
+//
+//    printf("Input_phys:");  
+//    scanf("%f",&students[index].phys);  
+//    getchar();  
+//
+//    printf("Input_elec:");  
+//    scanf("%f",&students[index].elec);  
+//    getchar();  
+//
+//    printf("Input_CII:");  
+//    scanf("%f",&students[index].CII);  
+//    getchar();  
+//
+//    students[index].Average=Average(students[index]);  
+//
+//}
+
 /*删除学生信息*/  
 void Student_Delete(){  
     int i;  
@@ -379,8 +505,8 @@ void Student_Sort_EachSubject(){
 	else 
 	    CII5++;
     }
-
-    printf(GREEN_COLOR,"\t\t90分以上\t80 ~ 89\t\t70~79\t\t60~69\t\t60以下\t\n");
+ 
+    printf(GREEN_COLOR,"\t\t90分以上\t80 ~ 89\t\t70~79\t\t60~69\t\t60以下\t(单位:人)\n");
     printf("--------------------------------------------------------------------------------------\n");  
     printf("math:\t\t %d\t\t %d\t\t %d\t\t %d\t\t %d\n",math1, math2, math3, math4, math5);
     printf("engl:\t\t %d\t\t %d\t\t %d\t\t %d\t\t %d\n",engl1, engl2, engl3, engl4, engl5);
