@@ -5,6 +5,7 @@
 void GradeInput()  
 {  
     int choice;  
+    //IO_ReadInfo();
   
     while(1)  
     {  
@@ -30,11 +31,13 @@ void GradeInput()
         }  
     }  
 
+    //IO_WriteInfo();
     return;
 }  
 
 //成绩统计模块
 void GradeTongJi(){
+    //IO_ReadInfo();
     int choice;
     system("clear");
 
@@ -64,6 +67,7 @@ void GradeTongJi(){
 
 //学籍处理
 void Student_status_management(){
+    //IO_ReadInfo();
     int choice;
     system("clear");
     do{
@@ -88,5 +92,7 @@ void Student_status_management(){
 	    getchar();
 	}
     }while(1);
+
+    return;
 }
 

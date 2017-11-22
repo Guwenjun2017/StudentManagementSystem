@@ -587,15 +587,15 @@ void IO_ReadInfo()
     FILE *fp;  
     int i;  
 
-    if((fp=fopen("record.txt","rb"))==NULL){  
+    if((fp=fopen("record.txt","rb")) == NULL){  
         printf("Open failed!\n");  
         return;  
     }  
-    if(fread(&num_of_students,sizeof(int),1,fp)!=1){  
-        num_of_students=-1;  
+    if(fread(&num_of_students, sizeof(int), 1, fp) != 1){  
+        num_of_students =- 1;  
     }else{  
-        for(i=0;i<num_of_students;i++){  
-	    fread(&students[i],sizeof(student),1,fp);  
+        for(i=0; i<num_of_students; i++){  
+	    fread(&students[i], sizeof(student), 1, fp);  
         }  
     }  
   
@@ -609,15 +609,15 @@ void IO_WriteInfo()
     FILE *fp;  
     int i;  
   
-    if((fp=fopen("record.txt","wb"))==NULL){  
+    if((fp=fopen("record.txt", "wb")) == NULL){  
         printf("Open failed!\n");  
         return;  
     }  
-    if(fwrite(&num_of_students,sizeof(int),1,fp)!=1){  
+    if(fwrite(&num_of_students, sizeof(int), 1, fp) != 1){  
         printf("Write in failed!\n");  
     }  
-    for (i=0;i<num_of_students;i++){  
-        if(fwrite(&students[i],sizeof(student),1,fp)!=1){  
+    for (i=0; i<num_of_students; i++){  
+        if(fwrite(&students[i], sizeof(student), 1, fp) != 1){  
 	    printf("Write in failed!\n");  
         }  
     }      
