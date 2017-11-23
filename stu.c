@@ -44,6 +44,7 @@ void Student_DisplaySingle(int index){
   
 /*插入学生信息*/  
 void Student_Insert(){  
+    IO_ReadInfo();
     int  *a = (int *)malloc(sizeof(int));
     while(1){  
 	system("clear");
@@ -134,6 +135,7 @@ void Student_Insert(){
         } 
     }  
 
+    IO_WriteInfo();
     return;
 }  
   
@@ -221,7 +223,7 @@ void Student_Modify(){
 		    students[index].Average=Average(students[index]);  
 		}
 } 
-  
+	getchar();
         printf(GREEN_COLOR,"Continue?(y/n)");  
         if(getchar()=='n'){  
 	    break;  
@@ -265,6 +267,7 @@ void Student_Delete(){
         }  
     } 
 
+    //IO_WriteInfo();
     return;
 }  
   
@@ -297,6 +300,7 @@ void Student_SelectByName(){
 /********************************************成绩统计模块**************************************************/
 /*按平均值排序*/  
 void Student_SortByAverage(){  
+    IO_ReadInfo();
     system("clear");
     int i, j;  
     student tmp;  
@@ -317,6 +321,7 @@ void Student_SortByAverage(){
    
 /*按学号排序*/
 void Student_SortByID(){
+    IO_ReadInfo();
     system("clear");
     int i, j;
     student tmp;
@@ -337,6 +342,7 @@ void Student_SortByID(){
 
 //各门课各分数段学生人数统计并打印
 void Student_Sort_EachSubject(){
+    IO_ReadInfo();
     system("clear");
     //IO_ReadInfo();
     int math1 = 0, math2 = 0, math3 = 0, math4 = 0, math5 = 0;
@@ -550,7 +556,7 @@ void print_information_tuixue(){
 
 //升学学生
 void print_information_up() {
-    system("clear");
+   system("clear");
     //初始挂科数为0
     int num_of_students_of_fail = 0;
     //初始升学人数设为-1,因计数从0开始
@@ -581,47 +587,28 @@ void print_information_up() {
 }
 
 /*********************************************文件读写模块*************************************************/
-/*将学生信息从文件读出*/  
-void IO_ReadInfo()  
-{  
-    FILE *fp;  
-    int i;  
+void IO_WriteInfo(){
+    FILE *fp = fopen("record.txt","a"); //追加写入
+    for(int i = 0; i < num_of_students; i++){
+	fprintf(fp,"%s %s %f %f %f %f %f %f", students[i].ID, students[i].Name, students[i].math,
+		students[i].engl, students[i].phys, students[i].elec, students[i].CII, students[i].Average);
+    }
+    printf("Done!\n");
+    fclose(fp);
 
-    if((fp=fopen("record.txt","rb")) == NULL){  
-        printf("Open failed!\n");  
-        return;  
-    }  
-    if(fread(&num_of_students, sizeof(int), 1, fp) != 1){  
-        num_of_students =- 1;  
-    }else{  
-        for(i=0; i<num_of_students; i++){  
-	    fread(&students[i], sizeof(student), 1, fp);  
-        }  
-    }  
-  
-    fclose(fp);  
     return;
-}  
-  
-/*将学生信息写入文件*/  
-void IO_WriteInfo()  
-{  
-    FILE *fp;  
-    int i;  
-  
-    if((fp=fopen("record.txt", "wb")) == NULL){  
-        printf("Open failed!\n");  
-        return;  
-    }  
-    if(fwrite(&num_of_students, sizeof(int), 1, fp) != 1){  
-        printf("Write in failed!\n");  
-    }  
-    for (i=0; i<num_of_students; i++){  
-        if(fwrite(&students[i], sizeof(student), 1, fp) != 1){  
-	    printf("Write in failed!\n");  
-        }  
-    }      
-  
-    fclose(fp);  
+}
+void IO_ReadInfo(){
+    FILE *fp = fopen("record.txt", "r");
+    if(fp == NULL){
+	IO_WriteInfo();
+	fp = fopen("record.txt", "r");
+    }
+    for(int i = 0; i < num_of_students; i++){
+	fscanf(fp, "%s %s %f %f %f %f %f %f", &students[i].ID, &students[i].Name, &students[i].math,
+		&students[i].engl, &students[i].phys, &students[i].elec, &students[i].CII, &students[i].Average);
+    }
+    fclose(fp);
+
     return;
-}  
+}

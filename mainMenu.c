@@ -3,7 +3,6 @@
 /*********************************************主模块****************************************************/
 int mainMenu()
 {
-    IO_ReadInfo();
     int choice;
     do{
 	//system("sl");
@@ -38,7 +37,6 @@ int mainMenu()
 	}
     }while(1);
 
-    IO_WriteInfo();
     return 0;
 
 }

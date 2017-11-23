@@ -8,7 +8,9 @@
 
 int main(int argc, char **argv)
 {
+    IO_ReadInfo();
     mainMenu();
 
+    IO_WriteInfo();
     return 0;
 }

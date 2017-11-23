@@ -4,8 +4,8 @@
 //成绩录入模块
 void GradeInput()  
 {  
-    int choice;  
     //IO_ReadInfo();
+    int choice;  
   
     while(1)  
     {  
