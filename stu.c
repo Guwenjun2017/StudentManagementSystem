@@ -9,10 +9,10 @@ float Average(student stu){
 }  
   
 /*通过学号返回数组下标*/  
-int Students_SearchByID(char id[]){  
+int Student_SearchByID(int id){  
     int i;  
     for(i=0;i<num_of_students;i++){  
-	if (strcmp(students[i].ID, id)==0)  
+	if (students[i].ID == id)  
         {  
 	    return i;  
         }  
@@ -35,7 +35,7 @@ int Student_SearchByName(char name[]){
 void Student_DisplaySingle(int index){  
     printf("%5s %9s %9s %9s %9s %9s %9s \t%9s  \n","ID","Name","math","engl","phys","elec","CII","平均成绩");
     printf("------------------------------------------------------------------------------------------\n");
-    printf("%7s %7s %10.2f %9.2f %9.2f %9.2f %10.2f %10.2f\n",students[index].ID,students[index].Name,  
+    printf("%7d %7s %10.2f %9.2f %9.2f %9.2f %10.2f %10.2f\n",students[index].ID,students[index].Name,  
               students[index].math, students[index].engl, students[index].phys, students[index].elec, \
 	      students[index].CII, students[index].Average);  
 
@@ -44,22 +44,22 @@ void Student_DisplaySingle(int index){
   
 /*插入学生信息*/  
 void Student_Insert(){  
-    IO_ReadInfo();
-    int  *a = (int *)malloc(sizeof(int));
+    //IO_ReadInfo();
+    //int  *a = (int *)malloc(sizeof(int));
     while(1){  
 	system("clear");
 	printf("Input_ID:");  
-        scanf("%s",&students[num_of_students].ID);  
+        scanf("%d",&students[num_of_students].ID);  
         getchar();  
 	for(int i = 0; i < num_of_students - 1; i++){
-	    if(strcmp(students[num_of_students].ID, students[i].ID) == 0){
-		*a = 1;
+	    if(students[num_of_students].ID == students[i].ID){
+		printf("\e[31m\e[1m%s\e[0m","add error!This student is existed.");
+		break;
+		//*a = 1;
 	    }
 	}
-	if(*a == 1){
-	    printf("\e[31m\e[1m%s\e[0m","add error!This student is existed.");
-	    break;
-	}
+	//if(*a == 1){
+	//}
 	
         printf("Input_Name:");  
         scanf("%s",&students[num_of_students].Name);  
@@ -135,20 +135,20 @@ void Student_Insert(){
         } 
     }  
 
-    IO_WriteInfo();
+    //IO_WriteInfo();
     return;
 }  
   
 /*修改学生信息*/  
 void Student_Modify(){  
     while(1){  
-	char id[20];  
+	int id;  
         int index;  
   
         printf("Please input the student's ID, the one you want to modify:");  
-        scanf("%s",&id);  
+        scanf("%d",&id);  
         getchar();  
-        index=Students_SearchByID(id);  
+        index=Student_SearchByID(id);  
         if(index==-1){  
             printf(GREEN_COLOR,"Not exist!\n");  
         }  
@@ -164,6 +164,7 @@ void Student_Modify(){
 		printf("-5.CII\n");
 		printf("-6.all information\n");
 		printf("-0.break\n");
+		printf(">>>>:");
 		scanf("%d", &choice);
 		if(1 == choice){
 		    printf("please input the new math score:");
@@ -193,7 +194,7 @@ void Student_Modify(){
 		if(6 == choice){
 		    printf("-- please input the all new information--\n");  
 		    printf("Input_ID:");  
-		    scanf("%s",&students[index].ID);  
+		    scanf("%d",&students[index].ID);  
 		    getchar();  
 
 		    printf("Input_Name:");  
@@ -237,12 +238,12 @@ void Student_Modify(){
 void Student_Delete(){  
     int i;  
     while(1){  
-	char id[20];  
+	int id;  
         int index;  
         printf("Please input ID of student which you want to delete:");  
-        scanf("%s",&id);  
+        scanf("%d",&id);  
         getchar();  
-        index=Students_SearchByID(id);  
+        index=Student_SearchByID(id);  
 
         if(index==-1){  
              printf("Not exist!\n");  
@@ -261,7 +262,7 @@ void Student_Delete(){
             getchar();  
         }  
 
-        printf(GREEN_COLOR,"Continue?(y/n)");  
+        printf(GREEN_COLOR,"Continue?(Enter/n)");  
         if(getchar()=='n'){  
              break;  
         }  
@@ -271,6 +272,32 @@ void Student_Delete(){
     return;
 }  
   
+/*按学号查询*/  
+void Student_SelectByID(){  
+    while(1){  
+	int a;
+        int index;  
+        printf("Please input the student's ID, the one you want to search:");  
+        scanf("%d",&a);  
+        getchar();  
+        index=Student_SearchByID(a);  
+
+        if (index==-1){  
+             printf(GREEN_COLOR,"Not exist!\n");  
+        }else{  
+             printf("The infomation of the student you want to search is:\n");  
+             Student_DisplaySingle(index);  
+        }  
+
+        printf(GREEN_COLOR,"Continue?(y/n)");  
+        if (getchar()=='n'){  
+             break;  
+        }  
+    }  
+
+    return;
+}  
+
 /*按姓名查询*/  
 void Student_SelectByName(){  
     while(1){  
@@ -300,7 +327,7 @@ void Student_SelectByName(){
 /********************************************成绩统计模块**************************************************/
 /*按平均值排序*/  
 void Student_SortByAverage(){  
-    IO_ReadInfo();
+    //IO_ReadInfo();
     system("clear");
     int i, j;  
     student tmp;  
@@ -321,14 +348,14 @@ void Student_SortByAverage(){
    
 /*按学号排序*/
 void Student_SortByID(){
-    IO_ReadInfo();
+    //IO_ReadInfo();
     system("clear");
     int i, j;
     student tmp;
 
     for(j = 0; j < num_of_students - 1; j++){
 	for(i = 0; i < num_of_students - 1; i++){
-	    if((strcmp(students[i].ID, students[i + 1].ID)) > 0){
+	    if(students[i].ID > students[i + 1].ID){
 		tmp = students[i];
 		students[i] = students[i + 1];
 		students[i + 1] = tmp;
@@ -342,7 +369,7 @@ void Student_SortByID(){
 
 //各门课各分数段学生人数统计并打印
 void Student_Sort_EachSubject(){
-    IO_ReadInfo();
+//    IO_ReadInfo();
     system("clear");
     //IO_ReadInfo();
     int math1 = 0, math2 = 0, math3 = 0, math4 = 0, math5 = 0;
@@ -442,7 +469,7 @@ void Student_Display()
     printf("-----------------------------------------------------------------------------------------------------------------\n");  
     for (i=0;i<num_of_students;i++){  
 	Ranking++;
-        printf("   %7s| %10s| %10.2f| %10.2f| %10.2f| %10.2f| %10.2f| %10.2f| %10d|\n", students[i].ID, students[i].Name,  
+        printf("   %7d| %10s| %10.2f| %10.2f| %10.2f| %10.2f| %10.2f| %10.2f| %10d|\n", students[i].ID, students[i].Name,  
              students[i].math, students[i].engl, students[i].phys, students[i].elec, students[i].CII, students[i].Average, Ranking);  
     }  
 
@@ -465,7 +492,8 @@ void print_information_bukao(){
 	if(students[i].phys < 60)
 	    num_of_students_of_fail++;
 	if(students[i].elec < 60)
-	    num_of_students_of_fail++; if(students[i].CII < 60)
+	    num_of_students_of_fail++; 
+	if(students[i].CII < 60)
 	    num_of_students_of_fail++;
 	if(num_of_students_of_fail > 0){
 	    num_of_students_of_studentbukao++;
@@ -481,7 +509,7 @@ void print_information_bukao(){
 
     printf(GREEN_COLOR,"\n-----------补考通知(学生ID Name和挂科科目成绩)-------------\n");  
     for(int j = 0; j < num_of_students_of_studentbukao; j++){
-        printf("%s\t", students_bukao[j].ID);
+        printf("%d\t", students_bukao[j].ID);
         printf("%s\t", students_bukao[j].Name);
         if(students_bukao[j].math < 60){
             printf("math:  %5.2f|", students_bukao[j].math);
@@ -531,7 +559,7 @@ void print_information_tuixue(){
     }
     printf(GREEN_COLOR,"\n-----------退学通知(学生ID Name和挂科科目成绩)-------------\n");  
     for(int j = 0; j < num_of_students_of_studentfail; j++){
-        printf("%s\t", students_fail[j].ID);
+        printf("%d\t", students_fail[j].ID);
         printf("%s\t", students_fail[j].Name);
         if(students_fail[j].math < 60){
             printf("math:  %5.2f|", students_fail[j].math);
@@ -579,7 +607,7 @@ void print_information_up() {
     }
     printf(GREEN_COLOR,"\nthe ID and name of students entering senior class:\n");
     for(int j = 0; j < num_of_students_of_up; j++){
-	printf("ID: %s\t", next[j].ID);
+	printf("ID: %d\t", next[j].ID);
 	printf("Name: %s\n", next[j].Name);
     }
 

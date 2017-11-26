@@ -17,8 +17,9 @@ int mainMenu()
 	printf(GREEN_COLOR,"                |                 main                        |\n");
 	printf(GREEN_COLOR,"                |---------------------------------------------|\n");
 	printf(GREEN_COLOR,"                |      1 ---- Result input                    |\n");
-	printf(GREEN_COLOR,"                |      2 ---- Achievement statistics          |\n");
-	printf(GREEN_COLOR,"                |      3 ---- Student status management       |\n");
+	printf(GREEN_COLOR,"                |      2 ---- Score query                     |\n");
+	printf(GREEN_COLOR,"                |      3 ---- Achievement statistics          |\n");
+	printf(GREEN_COLOR,"                |      4 ---- Student status management       |\n");
 	printf(GREEN_COLOR,"                |      0 ---- Exit                            |\n");
 	printf(GREEN_COLOR,"                |---------------------------------------------|\n");
 	printf(GREEN_COLOR,"                Please choose(1 ~ 3, 0: exit):\n");
@@ -27,8 +28,9 @@ int mainMenu()
 	switch(choice)
 	{
 	    case 1: GradeInput(); break;
-	    case 2: GradeTongJi(); break;
-	    case 3: Student_status_management(); break;
+	    case 2: GradeSearch(); break;
+	    case 3: GradeTongJi(); break;
+	    case 4: Student_status_management(); break;
 	    case 0: printf(YELLOW_COLOR,"-----------------------THANK YOU FOR YOUR USING!---------------------------\n");
 		    exit(0);
 	    default: printf(RED_COLOR,"It is an illegal option, and press any key to choose again!\n");

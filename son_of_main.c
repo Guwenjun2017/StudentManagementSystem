@@ -14,7 +14,6 @@ void GradeInput()
 	printf(GREEN_COLOR,"-------1. Add student Grade----------------\n");  
 	printf(GREEN_COLOR,"-------2. Modify student Grade-------------\n");  
 	printf(GREEN_COLOR,"-------3. Delete student Grade-------------\n");  
-	printf(GREEN_COLOR,"-------4. Searh_by_name--------------------\n");  
 	printf(GREEN_COLOR,"-------0. Return to main-------------------\n");  
 	printf(GREEN_COLOR,"-------Please choose(1 ~ 4), 0 to main:\n");  
 	printf(">>>>>>>:");
@@ -24,8 +23,7 @@ void GradeInput()
 	    case 1: Student_Insert(); break;  
 	    case 2: Student_Modify(); break;  
 	    case 3: Student_Delete(); break;  
-	    case 4: Student_SelectByName(); break;  
-	    case 0: return; break;  
+	    case 0: return;   
 	    default: printf(GREEN_COLOR,"It is an illegal option, and press Enter to choose again!\n");
 	    getchar();
         }  
@@ -35,6 +33,29 @@ void GradeInput()
     return;
 }  
 
+//成绩查询
+void GradeSearch(){
+    int choice;     
+
+    while(1){
+	system("clear");
+	printf(GREEN_COLOR,"\n------ Student Score Query--------------\n");  
+	printf(GREEN_COLOR,"-------1. Searh_by_ID--------------------\n");  
+	printf(GREEN_COLOR,"-------2. Searh_by_name--------------------\n");  
+	printf(GREEN_COLOR,"-------0. Return to main-------------------\n");  
+	printf(">>>>>>>:");
+	scanf("%d", &choice);
+	getchar();
+	switch(choice){
+	    case 1: Student_SelectByID(); break;  
+	    case 2: Student_SelectByName(); break;  
+	    case 0: return;   
+	    default: printf(GREEN_COLOR,"It is an illegal option, and press Enter to choose again!\n");
+	    getchar();
+	}
+    }
+    return;
+}
 //成绩统计模块
 void GradeTongJi(){
     //IO_ReadInfo();

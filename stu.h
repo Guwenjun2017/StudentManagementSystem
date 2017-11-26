@@ -14,7 +14,7 @@ void Student_Display();
 typedef struct Student  
 {  
     //ID类型为char数组,谨记!!! 
-    char ID[20];  
+    int ID;  
     char Name[20];  
     float math;  
     float engl;  
@@ -39,7 +39,7 @@ student next[1000];
 float Average(student stu);
 
 /*通过学号返回数组下标*/  
-int Student_SearchByID(char id[]);
+int Student_SearchByID(int id);
 
 /*通过姓名返回数组下标*/  
 int Student_SearchByName(char name[]);  
@@ -62,6 +62,9 @@ void modify_all();
 
 /*删除学生信息*/  
 void Student_Delete();
+
+/*按学号查询*/  
+void Student_SelectByID(); 
 
 /*按姓名查询*/  
 void Student_SelectByName(); 
@@ -99,6 +102,9 @@ void IO_WriteInfo();
 /*******************************子菜单*****************************************/  
 //成绩录入
 void GradeInput();
+
+//成绩查询
+void GradeSearch();
 
 //成绩统计
 void GradeTongJi();
