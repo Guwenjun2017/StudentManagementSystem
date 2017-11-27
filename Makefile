@@ -1,18 +1,22 @@
-pre = test.o stu.o son_of_main.o mainMenu.o 
-last: $(pre) stu.h
+pre = obj/test.o obj/mainMenu.o obj/son_of_main.o obj/stu.o obj/stu_C.o 
+
+bin/last: $(pre) inc/stu.h
 	gcc $(pre) -o $@ 
 
-objs = test.c stu.c son_of_main.c mainMenu.c
 
-test.o : test.c stu.h
+obj/test.o : src/test.c inc/stu.h
 	gcc -c $< -o $@
-stu.o : stu.c stu.h
+obj/mainMenu.o : src/mainMenu.c inc/stu.h
+	gcc -c $< -o $@ 
+obj/son_of_main.o : src/son_of_main.c inc/stu.h
+	gcc -c $< -o $@ 
+obj/stu.o : src/stu.c inc/stu.h
 	gcc -c $< -o $@   
-son_of_main.o : son_of_main.c stu.h
-	gcc -c $< -o $@ 
-mainMenu.o : mainMenu.c stu.h
-	gcc -c $< -o $@ 
+obj/stu_C.o : src/stu_C.c inc/stu.h
+	gcc -c $< -o $@
 
 .PHONY: clean
 clean:
-	rm *.o last
+	cd obj;rm *.o   #命令在项目根目录执行完后,会自动切换回项目根目录,
+	cd bin;rm last  #无需cd ..返回上一级目录
+	@#cd ..

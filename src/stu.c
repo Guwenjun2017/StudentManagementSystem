@@ -1,4 +1,4 @@
-#include "stu.h"
+#include "../inc/stu.h"
 
 //初始学生数为0
 int num_of_students = 0;
@@ -45,7 +45,7 @@ void Student_DisplaySingle(int index){
 /*插入学生信息*/  
 void Student_Insert(){  
     //IO_ReadInfo();
-    //int  *a = (int *)malloc(sizeof(int));
+    int  a = 0;
     while(1){  
 	system("clear");
 	printf("Input_ID:");  
@@ -54,12 +54,12 @@ void Student_Insert(){
 	for(int i = 0; i < num_of_students - 1; i++){
 	    if(students[num_of_students].ID == students[i].ID){
 		printf("\e[31m\e[1m%s\e[0m","add error!This student is existed.");
-		break;
-		//*a = 1;
+		a = 1;
 	    }
 	}
-	//if(*a == 1){
-	//}
+	if(a == 1){
+	    break;
+	}
 	
         printf("Input_Name:");  
         scanf("%s",&students[num_of_students].Name);  
