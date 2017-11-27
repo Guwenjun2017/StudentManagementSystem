@@ -19,4 +19,3 @@ obj/stu_C.o : src/stu_C.c inc/stu.h
 clean:
 	cd obj;rm *.o   #命令在项目根目录执行完后,会自动切换回项目根目录,
 	cd bin;rm last  #无需cd ..返回上一级目录
-	@#cd ..
