@@ -129,7 +129,7 @@ void GradeInput_C()
     while(1)  
     {  
 	system("clear");
-	printf(GREEN_COLOR,"\n------ Student store manage--------------\n");  
+	printf(GREEN_COLOR,"\n-----------学生成绩管理--------------\n");  
 	printf(GREEN_COLOR,"-------1. 添加学生成绩\n");  
 	printf(GREEN_COLOR,"-------2. 修改学生成绩\n");  
 	printf(GREEN_COLOR,"-------3. 删除学生成绩\n");  
