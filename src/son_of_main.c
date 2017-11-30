@@ -1,4 +1,5 @@
 #include "../inc/stu.h"
+int passward = 201711;
 
 //英文子菜单
 /*******************************************子菜单模块***************************************************/  
@@ -7,7 +8,16 @@ void GradeInput()
 {  
     //IO_ReadInfo();
     int choice;  
+    int key;
   
+    printf("please input your passward:");
+    system("/bin/stty -echo");
+    scanf("%d", &key);
+    system("/bin/stty echo");
+    if(key != passward){
+	printf("Password error!");
+	return;
+    }
     while(1)  
     {  
 	system("clear");
@@ -125,7 +135,16 @@ void GradeInput_C()
 {  
     //IO_ReadInfo();
     int choice;  
+    int key;
   
+    printf("请输入您的密码:");
+    system("/bin/stty -echo");
+    scanf("%d", &key);
+    system("/bin/stty echo");
+    if(key != passward){
+	printf(RED_COLOR,"密码错误!");
+	return;
+    }
     while(1)  
     {  
 	system("clear");
