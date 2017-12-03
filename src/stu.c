@@ -51,7 +51,7 @@ void Student_Insert(){
 	printf("Input_ID:");  
         scanf("%d",&students[num_of_students].ID);  
         getchar();  
-	for(int i = 0; i < num_of_students - 1; i++){
+	for(int i = 0; i < num_of_students; i++){
 	    if(students[num_of_students].ID == students[i].ID){
 		printf("\e[31m\e[1m%s\e[0m","add error!This student is existed.");
 		a = 1;
@@ -615,28 +615,48 @@ void print_information_up() {
 }
 
 /*********************************************文件读写模块*************************************************/
-void IO_WriteInfo(){
-    FILE *fp = fopen("record.txt","a"); //追加写入
-    for(int i = 0; i < num_of_students; i++){
-	fprintf(fp,"%s %s %f %f %f %f %f %f", students[i].ID, students[i].Name, students[i].math,
-		students[i].engl, students[i].phys, students[i].elec, students[i].CII, students[i].Average);
+void IO_ReadInfo()
+{
+    FILE *fp;
+    int i;
+    if((fp=fopen("record.txt", "rb")) == NULL)
+    {
+	printf("open failed!\n");
+	return;
     }
-    printf("Done!\n");
-    fclose(fp);
+    if(fread(&num_of_students, sizeof(int), 1, fp) != 1)
+    {
+	num_of_students = -1;
+    }
+    else
+    {
+	for(i = 0; i < num_of_students; i++)
+	{
+	    fread(&students[i], sizeof(struct Student), 1, fp);
+	}
+    }
 
-    return;
+    fclose(fp);
 }
-void IO_ReadInfo(){
-    FILE *fp = fopen("record.txt", "r");
-    if(fp == NULL){
-	IO_WriteInfo();
-	fp = fopen("record.txt", "r");
+void IO_WriteInfo()
+{
+    FILE *fp;
+    int i;
+    if((fp = fopen("record.txt", "wb")) == NULL)
+    {
+	printf("open failed!\n");
+	return;
     }
-    for(int i = 0; i < num_of_students; i++){
-	fscanf(fp, "%s %s %f %f %f %f %f %f", &students[i].ID, &students[i].Name, &students[i].math,
-		&students[i].engl, &students[i].phys, &students[i].elec, &students[i].CII, &students[i].Average);
+    if(fwrite(&num_of_students, sizeof(int), 1, fp) !=  1)
+    {
+	printf("writeIn failed!\n");
     }
-    fclose(fp);
+    for(i = 0; i < num_of_students; i++)
+    {
+	if(fwrite(&students[i], sizeof(struct Student), 1, fp) != 1){
+	    printf("writeIn failed!\n");
+	}
+    }
 
-    return;
+    fclose(fp);
 }

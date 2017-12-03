@@ -46,6 +46,7 @@ void GradeInput()
 
 //成绩查询
 void GradeSearch(){
+    //IO_ReadInfo();
     int choice;     
 
     while(1){
@@ -65,6 +66,7 @@ void GradeSearch(){
 	    getchar();
 	}
     }
+    //IO_WriteInfo();
     return;
 }
 //成绩统计模块
@@ -94,6 +96,7 @@ void GradeTongJi(){
 	}
     }
 
+    //IO_WriteInfo();
     return;
 }
 
@@ -125,6 +128,7 @@ void Student_status_management(){
 	}
     }while(1);
 
+    //IO_WriteInfo();
     return;
 }
 
@@ -133,8 +137,8 @@ void Student_status_management(){
 //成绩录入模块
 void GradeInput_C()  
 {  
-    //IO_ReadInfo();
     int choice;  
+    //IO_ReadInfo();
     int key;
   
     printf("请输入您的密码:");
@@ -174,6 +178,7 @@ void GradeInput_C()
 //成绩查询
 void GradeSearch_C(){
     int choice;     
+    //IO_ReadInfo();
 
     while(1){
 	system("clear");
@@ -192,12 +197,13 @@ void GradeSearch_C(){
 	    getchar();
 	}
     }
+    //IO_WriteInfo();
     return;
 }
 //成绩统计模块
 void GradeTongJi_C(){
-    //IO_ReadInfo();
     int choice;
+    //IO_ReadInfo();
     system("clear");
 
     while(1){
@@ -221,13 +227,14 @@ void GradeTongJi_C(){
 	}
     }
 
+    //IO_WriteInfo();
     return;
 }
 
 //学籍处理
 void Student_status_management_C(){
-    //IO_ReadInfo();
     int choice;
+    //IO_ReadInfo();
     system("clear");
     do{
 	printf(GREEN_COLOR,"|---------------------------------------------------|\n");
@@ -252,6 +259,7 @@ void Student_status_management_C(){
 	}
     }while(1);
 
+    //IO_WriteInfo();
     return;
 }
 

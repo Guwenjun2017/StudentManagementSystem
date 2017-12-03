@@ -5,6 +5,7 @@
 int mainMenu()
 {
     int choice;
+    IO_ReadInfo();
     do{
 	//system("sl");
 	//system("sh do.sh");
@@ -40,6 +41,7 @@ int mainMenu()
 	}
     }while(1);
 
+    IO_WriteInfo();
     return 0;
 
 }
@@ -48,6 +50,7 @@ int mainMenu()
 int mainMenu_C()
 {
     int choice;
+    IO_ReadInfo();
     do{
 	//system("sl");
 	//system("sh do.sh");
@@ -83,6 +86,6 @@ int mainMenu_C()
 	}
     }while(1);
 
+    IO_WriteInfo();
     return 0;
-
 }
